@@ -1,0 +1,27 @@
+$colors: (
+  font-main-color: #dc56c5,
+  font-second-color: #fff,
+  font-footer-color: #939393,
+  bg-color: #0e0e0e,
+  bg-modal: #fff2fd,
+  button-color: #4c00fe,
+);
+
+@function getColor($name) {
+  @return map-get($colors, $name);
+}
+
+$fonts: (
+  'main-roboto': (
+    'Roboto',
+    sans-serif,
+  ),
+  'second-raleway': (
+    'Raleway',
+    sans-serif,
+  ),
+);
+
+@function getFont($font) {
+  @return map-get($fonts, $font);
+}

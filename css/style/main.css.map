@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,IAAI,CAAA;EAIF,UAAU,EAAE,MAAM;EAClB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,gBAAgB,EAAE,aAAa;EAC/B,SAAS,EAAE,KAAK;CACjB;;AAED,AAAA,CAAC,CAAA;EACC,eAAe,EAAE,IAAI;CACtB;;AAED,AAAA,EAAE,CAAA;EACC,eAAe,EAAE,IAAI;CACvB;;AAED,AAAA,EAAE;AACF,EAAE;AACF,EAAE;AACF,EAAE;AACF,EAAE;AACF,EAAE,CAAA;EACA,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;CACX;;AAED,AAAA,EAAE;AACF,EAAE,CAAA;EACA,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;CACX;;AAED,AAAA,CAAC,CAAA;EACC,OAAO,EAAE,CAAC;CACX;;AAED,AAAA,GAAG,CAAA;EACD,OAAO,EAAE,KAAK;CACf;;AGzCD,UAAU,CAAV,IAAU;EACR,EAAE;;EAGF,GAAG;;EAIH,IAAI",
+    "sources": [
+        "../../src/sass/main.scss",
+        "../../src/sass/base/_common.scss",
+        "../../src/sass/base/_container.scss",
+        "../../src/sass/utils/_variable.scss",
+        "../../src/sass/utils/_keyframes.scss",
+        "../../src/sass/components/_buttons.scss",
+        "../../src/sass/components/_logo.scss",
+        "../../src/sass/layout/_heder.scss",
+        "../../src/sass/layout/_hero.scss",
+        "../../src/sass/layout/_footer.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}
