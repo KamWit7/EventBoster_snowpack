@@ -5,14 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EventBooster</title>
 
-    <link rel="stylesheet" href="./css/style/main.css"/>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="./css/style/main.css" />
   </head>
   <body>
-    <include type="module" src="./src/partials/headre.html"></include>
-  
-    lelel
-    <script type="module" src="./index.js"></script>
+    <section class="header">
+      <div class="container">
+        <ul class="header__list">
+          <li class="logo"><svg ><use href="./src/svg/symbol.svg#icon-logo"></svg></li>
+          <li class="title"><h1>FIND BEST EVENTS AROUND THE WORLD</h1></li>
+          <li class="serch">
+            <form class="serch__form">
+              <div class="serch__wrapper">
+                <input
+                  type="text"
+                  id="event-serch"
+                  placeholder="Start searching"
+                  maxlength="20"
+                />
+                <svg class="loop"> <use href="./src/svg/symbol.svg#icon-loop"></svg>
+              </div>
+              <div class="serch__wrapper">
+                <input
+                  type="text"
+                  id="choose-country"
+                  placeholder="Choose country"
+                  maxlength="20"
+                />
+                <svg class="down-arrow"> <use href="./src/svg/symbol.svg#icon-arrow"> </svg>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!--  -->
+    <section class=" events ">
+      <!-- render in js -->
+      <div class="container">
+        <ul class="event">
+          <li class="event__img">
+            <img width="100px"
+              src="./src/images/temporary/pic.png"
+              alt="Eurovision party poster"
+            />
+          </li>
+          <li class="event__title"><h2>Eurovision 2021 finals!</h2></li>
+          <li class="event__start"><span>2021-05-13</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>Palace of Ukraine</span></li>
+        </ul>
+
+        <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+        <ul class="pages">
+          <li class="page">1</li>
+          <li class="page">2</li>
+          <li class="page">...</li>
+          <li class="page">30</li>
+        </ul>
+      </div>
+
+      <!-- render in js end-->
+    </section>
+    <!--  -->
+    <section class="footer">
+      <div class="container">
+        <p>© 2021 | All Rights Reserved | Developed with ♥ by GoIT Students</p>
+      </div>
+    </section>
+
+    <!-- MODAL PART -->
+    <section class="modal">
+      <div class="wrapper">
+        <svg></svg>
+        <ul class="modal-list">
+          <li class="img"><img src="" alt="" /></li>
+          <li class="info">
+            <span>INFO</span>
+            <p>
+              Atlas Weekend is the largest music festival in Ukraine. More than
+              200 artists will create a proper music festival atmosphere on 10
+              stages
+            </p>
+          </li>
+          <li class="when">
+            <span>WHEN</span>
+            <p>2021-06-09</p>
+            <p>20:00 (Kyiv/Ukraine)</p>
+          </li>
+          <li class="where">
+            <span>WHERE</span>
+            <p>Kyiv, Ukraine</p>
+            <p>VDNH</p>
+          </li>
+          <li class="who">
+            <span>WHO</span>
+            <p>The Black Eyed Peas</p>
+          </li>
+          <li class="prices">
+            <span>PRICES</span>
+            <p>Standart 300-500 UAH</p>
+            <button>BUY TICKETS</button>
+            <p>VIP 1000-1500 UAH</p>
+            <button>BUY TICKETS</button>
+
+            <button>MORE FROM THIS AUTHOR</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script type="module" src="./src/js/evetsAPI.js"></script>
+    <script type="module" src="./src/js/modal.js"></script>
   </body>
 </html>
 
