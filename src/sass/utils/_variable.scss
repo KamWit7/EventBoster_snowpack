@@ -1,26 +1,26 @@
 $colors: (
   font-main-color: #dc56c5,
   font-second-color: #fff,
-  font-footer-color: #939393,
+  font-gray-color: #939393,
   bg-color: #0e0e0e,
   bg-modal: #fff2fd,
   button-color: #4c00fe,
 );
 
-@function getColor($name) {
-  @return map-get($colors, $name);
-}
-
 $fonts: (
-  'main-roboto': (
-    'Roboto',
+  "main-Montserrat": (
+    "Montserrat",
     sans-serif,
   ),
-  'second-raleway': (
-    'Raleway',
+  "second-raleway": (
+    "Raleway",
     sans-serif,
   ),
 );
+
+@function getColor($name) {
+  @return map-get($colors, $name);
+}
 
 @function getFont($font) {
   @return map-get($fonts, $font);

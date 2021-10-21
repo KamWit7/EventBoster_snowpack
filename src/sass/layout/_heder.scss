@@ -1,0 +1,198 @@
+@import "../utils/variable";
+
+.header {
+  background: linear-gradient(90deg, #0b0b0b73 0%, #0b0b0b80 50%),
+    url("./../../src/images/header/bg-band.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  height: 364px;
+  position: relative;
+
+  @media screen and (min-width: 330px) {
+    background: linear-gradient(90deg, #0b0b0b73 0%, #0b0b0b80 50%),
+      url("./../../src/images/header/bg-bandMid.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (min-width: 760px) {
+    background: linear-gradient(90deg, #0b0b0b73 0%, #0b0b0b80 50%),
+      url("./../../src/images/header/bg-bandBig.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .logo {
+    position: absolute;
+    height: 180px;
+    width: 213.97px;
+    top: -100px;
+    left: -100px;
+
+    background: linear-gradient(
+      136.07deg,
+      rgba(196, 196, 196, 0.03) 10.75%,
+      rgba(196, 196, 196, 0) 92.33%
+    );
+    backdrop-filter: blur(30px);
+    border-radius: 50%;
+
+    & > svg {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 90px;
+      left: 100px;
+
+      @media screen and (min-width: 768px) {
+        width: calc(100px * calc(359 / 213.9));
+        height: calc(100px * calc(302 / 180));
+        top: calc(90px * calc(359 / 213.9));
+        left: calc(100px * calc(302 / 180));
+      }
+
+      @media screen and (min-width: 1280px) {
+        width: calc(100px * calc(477 / 213.9));
+        height: calc(100px * calc(402 / 180));
+        top: calc(90px * calc(477 / 213.9));
+        left: calc(100px * calc(402 / 180));
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      height: 302px;
+      width: 359px;
+      left: -179px;
+      top: -160px;
+      overflow: hidden;
+    }
+
+    @media screen and (min-width: 1280px) {
+      height: 402px;
+      width: 477px;
+      left: -239px;
+      top: -240px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .title > h1 {
+      width: 212px;
+      height: fit-content;
+      margin-top: 78px;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.222;
+      text-align: center;
+
+      @media screen and (min-width: 768px) {
+        width: 353px;
+        height: fit-content;
+        margin-top: 40px;
+        font-size: 30px;
+      }
+
+      @media screen and (min-width: 1280px) {
+        width: 590px;
+        height: fit-content;
+        margin-top: 40px;
+        font-size: 50px;
+      }
+    }
+
+    .serch {
+      &__form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      &__wrapper {
+        position: relative;
+        @media screen and(min-width:1280px) {
+          margin-top: 52px;
+        }
+        #event-serch,
+        #choose-country {
+          box-sizing: border-box;
+          width: 270px;
+          height: 40px;
+          margin-top: 25px;
+          padding: 10px 40px;
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(20px);
+          border-radius: 20px;
+          border-style: none;
+
+          font-size: 16px;
+          line-height: 20px;
+          font-weight: 400;
+
+          &::placeholder {
+            color: getColor(font-gray-color);
+          }
+
+          &:hover,
+          &:focus {
+            outline: none;
+          }
+        }
+
+        #event-serch {
+          @media screen and (min-width: 768px) {
+            margin-right: 15px;
+          }
+        }
+
+        #choose-country {
+          @media screen and (min-width: 768px) {
+            margin-left: 15px;
+          }
+        }
+
+        .loop,
+        .down-arrow {
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          top: 40px;
+          right: 30px;
+        }
+
+        .loop {
+          @media screen and (min-width: 768px) {
+            top: 39px;
+            right: 43px;
+          }
+
+          @media screen and (min-width: 1280px) {
+            top: 39px;
+            right: 43px;
+          }
+        }
+      }
+    }
+  }
+
+  //   @media screen and (min-width: 768px) {
+  //   }
+
+  //   @media screen and (min-width: 1280px) {
+  //   }
+}

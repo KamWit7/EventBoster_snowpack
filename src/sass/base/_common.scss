@@ -1,20 +1,19 @@
-body{
-//   font-family: getFont(main-roboto);
-//   background-color:getColor(main-bg);
-//   color: getColor(font-dark);
+@import "./../utils/variable";
+body {
+  font-family: getFont(main-Montserrat);
+  background-color: getColor(bg-color);
+  color: getColor(font-main-color);
   font-style: normal;
   margin: 0;
   padding: 0;
-  background-color: rgb(117, 67, 167);
-  // font-size: 250px;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-li{
-   list-style-type: none;
+li {
+  list-style-type: none;
 }
 
 h1,
@@ -22,21 +21,21 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
   margin: 0;
   padding: 0;
 }
 
 ul,
-ol{
+ol {
   margin: 0;
   padding: 0;
 }
 
-p{
+p {
   padding: 0;
 }
 
-img{
+img {
   display: block;
 }
