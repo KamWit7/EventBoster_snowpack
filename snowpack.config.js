@@ -3,13 +3,19 @@
 
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
+  mount: {
+    /* ... */
+  },
   plugins: [
-    [
-      "@snowpack/plugin-sass",
-      {
-        style: "compressed",
-        sourceMap: true,
-      },
-    ],
+    /* ... */
   ],
-}
+  packageOptions: {
+    /* ... */
+  },
+  devOptions: {
+    /* ... */
+  },
+  buildOptions: {
+    /* ... */
+  },
+};

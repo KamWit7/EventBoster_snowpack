@@ -5,7 +5,6 @@
     url("./../../src/images/header/bg-band.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
-
   height: 364px;
   position: relative;
 
@@ -16,12 +15,13 @@
     background-repeat: no-repeat;
   }
 
-  @media screen and (min-width: 760px) {
+  @media screen and (min-width: 780px) {
     background: linear-gradient(90deg, #0b0b0b73 0%, #0b0b0b80 50%),
       url("./../../src/images/header/bg-bandBig.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     max-width: 1280px;
+    height: 446px;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
@@ -117,6 +117,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+
         @media screen and (min-width: 768px) {
           flex-direction: row;
           justify-content: space-between;
@@ -125,9 +126,14 @@
 
       &__wrapper {
         position: relative;
-        @media screen and(min-width:1280px) {
-          margin-top: 52px;
+
+        @media screen and(min-width:768px) {
+          margin-top: 27px;
         }
+        @media screen and(min-width:1280px) {
+          margin-top: 27px;
+        }
+
         #event-serch,
         #choose-country {
           box-sizing: border-box;

@@ -1,0 +1,40 @@
+@import "./../utils/variable";
+
+.footer {
+  & > .container {
+    width: 252px;
+    height: 34px;
+    margin-top: 60px;
+    margin-bottom: 27px;
+
+    @media screen and (min-width: 768px) {
+      width: 521px;
+      height: 20px;
+    }
+  }
+  &__text {
+    color: getColor(font-gray-color);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.214;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+  }
+
+  &__span {
+    color: getColor(font-main-color);
+  }
+
+  &__hart {
+    color: getColor(font-main-color);
+    font-size: 17px;
+  }
+
+  &__team {
+    text-decoration: underline;
+  }
+}
