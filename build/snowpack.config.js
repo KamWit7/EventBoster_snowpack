@@ -7,12 +7,7 @@ module.exports = {
     /* ... */
   },
   plugins: [
-    [
-      "@snowpack/plugin-sass",
-      {
-        loadPath: './src/sass/main.scss'
-      },
-    ],
+    /* ... */
   ],
   packageOptions: {
     /* ... */
@@ -23,4 +18,4 @@ module.exports = {
   buildOptions: {
     /* ... */
   },
-}
+};
