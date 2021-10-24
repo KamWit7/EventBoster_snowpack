@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/style/main.css" />
+    <link rel="stylesheet" href="./src/css/main.min.css" />
   </head>
   <body>
     <section class="header">
@@ -43,12 +43,13 @@
       </div>
     </section>
     <!--  -->
-    <section class=" events ">
+    <section class="events">
       <!-- render in js -->
       <div class="container">
+
         <ul class="event">
           <li class="event__img">
-            <img width="100px"
+            <img 
               src="./src/images/temporary/pic.png"
               alt="Eurovision party poster"
             />
@@ -70,59 +71,158 @@
           <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
         </ul>
 
+         <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+        <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+         <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+          <ul class="event">
+          <li class="event__img">
+            <img 
+              src="./src/images/temporary/pic.png"
+              alt="Eurovision party poster"
+            />
+          </li>
+          <li class="event__title"><h2>Eurovision 2021 finals!</h2></li>
+          <li class="event__start"><span>2021-05-13</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>Palace of Ukraine</span></li>
+        </ul>
+
+        <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+         <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+        <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+         <ul class="event">
+          <li class="event__img">
+            <img
+              src="./src/images/temporary/pic.png"
+              alt="Black Eyed Peas poster"
+            />
+          </li>
+          <li class="event__title"><h2>Atlas Weekend</h2></li>
+          <li class="event__start"><span>2021-06-09</span></li>
+          <li class="event__place"><svg> <use href="./src/svg/symbol.svg#icon-pin"></use></svg> <span>VDNH</span></li>
+        </ul>
+
+      </div>
+
         <ul class="pages">
           <li class="page">1</li>
           <li class="page">2</li>
+          <li class="page">3</li>
+          <li class="page">4</li>
+          <li class="page">5</li>
           <li class="page">...</li>
-          <li class="page">30</li>
+          <li class="page">29</li>
         </ul>
-      </div>
-
       <!-- render in js end-->
     </section>
     <!--  -->
     <section class="footer">
       <div class="container">
-        <p>© 2021 | All Rights Reserved | Developed with ♥ by GoIT Students</p>
+        <p class="footer__text">© 2021 <span class="footer__span">|</span> All Rights Reserved <span class="footer__span">|</span> Developed with <span class="footer__hart">♥</span> <span class="footer__team">by GoIT Students</span></p>
       </div>
     </section>
 
     <!-- MODAL PART -->
-    <section class="modal">
+    <section class=" modal backdrop">
       <div class="wrapper">
-        <svg></svg>
+        <svg class="close"><use href="./src/svg/symbol.svg#icon-close"></svg>
         <ul class="modal-list">
-          <li class="img"><img src="" alt="" /></li>
-          <li class="info">
-            <span>INFO</span>
-            <p>
+          <li class="modal-list__img"><img src="./src/images/temporary/pic.png" alt="" /></li>
+          <li class="modal-list__info">
+            <span class="modal-list__title">INFO</span>
+            <p class="modal-list__text">
               Atlas Weekend is the largest music festival in Ukraine. More than
               200 artists will create a proper music festival atmosphere on 10
               stages
             </p>
           </li>
-          <li class="when">
-            <span>WHEN</span>
-            <p>2021-06-09</p>
-            <p>20:00 (Kyiv/Ukraine)</p>
+          <li class="modal-list__when">
+            <span class="modal-list__title">WHEN</span>
+            <p class="modal-list__text">2021-06-09</p>
+            <p class="modal-list__text">20:00 (Kyiv/Ukraine)</p>
           </li>
-          <li class="where">
-            <span>WHERE</span>
-            <p>Kyiv, Ukraine</p>
-            <p>VDNH</p>
+          <li class="modal-list__where">
+            <span class="modal-list__title">WHERE</span>
+            <p class="modal-list__text">Kyiv, Ukraine</p>
+            <p class="modal-list__text">VDNH</p>
           </li>
-          <li class="who">
-            <span>WHO</span>
-            <p>The Black Eyed Peas</p>
+          <li class="modal-list__who">
+            <span class="modal-list__title">WHO</span>
+            <p class="modal-list__text">The Black Eyed Peas</p>
           </li>
-          <li class="prices">
-            <span>PRICES</span>
-            <p>Standart 300-500 UAH</p>
-            <button>BUY TICKETS</button>
-            <p>VIP 1000-1500 UAH</p>
-            <button>BUY TICKETS</button>
+          <li class="modal-list__prices">
+            <span class="modal-list__title">PRICES</span>
+            <p class="modal-list__text">Standart 300-500 UAH</p>
+            <button class="btn-buy">BUY TICKETS</button>
+            <p class="modal-list__text">VIP 1000-1500 UAH</p>
+            <button class="btn-buy">BUY TICKETS</button>
 
-            <button>MORE FROM THIS AUTHOR</button>
+            <button class="btn-author">MORE FROM THIS AUTHOR</button>
           </li>
         </ul>
       </div>
