@@ -8,34 +8,49 @@ const pageNumber = document.querySelector("ul.pages");
 pageNumber.addEventListener("click", showPage);
 
 async function showPage(event) {
-  event.preventDefault();
   console.log(
     "Jak klikasz to console loguje się czyli addeventlistener działa"
   );
-  fetch(
+  return fetch(
     `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&per_page=${perPage}&page=${page}`
   )
-    .then()
-    .catch();
+    .then((pages) => {
+      return pages.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
+
+console.log(
+  showPage().then((apiResults) => {
+    console.log(apiResults);
+    console.log(apiResults.page);
+    console.log(apiResults._embedded.events[0]);
+  })
+);
+
+// page._embedded.events[0].images - obrazek (jest kilka, który wybrać?)
+// page._embedded.events[0].name - nazwa eventu
+// page._embedded.events[0].dates.start.localDate - dzień rozpoczęcia
+// page._embedded.events[0]._embedded.venues.address.line1 - geo lokalizacja
+// page._embedded.events[0]._embedded.venues.name - nazwa lokalizacji
 
 const renderPages = (pages) => {
   const markup = pages
     .map(
       (page) => `
-      <ul class="pages">
         <li class="page">${page}</li>
         <li class="page">${page + 1}</li>
         <li class="page">${page + 2}</li>
         <li class="page">${page + 3}</li>
         <li class="page">${page + 4}</li>
         <li class="page">...</li>
-        <li class="page">${totalPages}</li>
-      </ul>`
+        <li class="page">${totalPages}</li>`
     )
     .join("");
 
-  gallery.innerHTML = markup;
+  pages.innerHTML = markup;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
