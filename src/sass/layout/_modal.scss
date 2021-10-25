@@ -127,7 +127,10 @@
       }
 
       &--label::before {
-        content: "||||";
+        content: '';
+        display: inline-block;
+        background: url('./../images/modal/ticket.png');
+        // fill:red;
         width: 24px;
         height: 16px;
         margin-right: 13px;
@@ -206,24 +209,6 @@
     }
   }
 }
-
-// .backdrop {
-//   top: 0%;
-//   position: fixed;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   opacity: 1;
-//   overflow: visible;
-//   z-index: 8;
-//   background: #200d1d99;
-//   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
-
-//   &__hidden {
-//     visibility: hidden;
-//     opacity: 0;
-//   }
-// }
 
 .backdrop{
     visibility: visible;
