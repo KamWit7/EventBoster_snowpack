@@ -1,0 +1,38 @@
+@import "./../utils/keyframes";
+
+.loading-box {
+  width: 152px;
+  height: 152px;
+  display: inline-block;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+}
+
+.loading-circle {
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+
+  & div {
+    position: absolute;
+    border-width: 7.6px;
+    border-style: solid;
+    opacity: 1;
+    border-radius: 50%;
+    animation: loading-circle 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+
+    &:first-child() {
+      border-color: #dc56c5;
+      animation-delay: 0s;
+    }
+
+    &:last-child() {
+      border-color: #ffffff;
+      animation-delay: -0.5s;
+    }
+  }
+}

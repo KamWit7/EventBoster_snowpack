@@ -170,3 +170,22 @@
   }
 
 // form end
+
+// loading
+@keyframes loading-circle {
+  0% {
+    top: 68.4px;
+    left: 68.4px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -2.2800000000000002px;
+    left: -2.2800000000000002px;
+    width: 141.36px;
+    height: 141.36px;
+    opacity: 0;
+  }
+}
+// end loading

@@ -1,34 +1,32 @@
-import { API_KEY } from "./globalVAR";
+import { API_KEY } from "./globalVAR"
 
-let perPage = 24;
-let page = 0;
+let perPage = 24
+let page = 0
 
-const pageNumber = document.querySelector("ul.pages");
+const pageNumber = document.querySelector("ul.pages")
 
-pageNumber.addEventListener("click", showPage);
+pageNumber.addEventListener("click", showPage)
 
 async function showPage(event) {
-  console.log(
-    "Jak klikasz to console loguje się czyli addeventlistener działa"
-  );
+  console.log("Jak klikasz to console loguje się czyli addeventlistener działa")
   return fetch(
     `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&per_page=${perPage}&page=${page}`
   )
     .then((pages) => {
-      return pages.json();
+      return pages.json()
     })
     .catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }
 
 console.log(
   showPage().then((apiResults) => {
-    console.log(apiResults);
-    console.log(apiResults.page);
-    console.log(apiResults._embedded.events[0]);
+    console.log(apiResults)
+    console.log(apiResults.page)
+    console.log(apiResults._embedded.events[0])
   })
-);
+)
 
 // page._embedded.events[0].images - obrazek (jest kilka, który wybrać?)
 // page._embedded.events[0].name - nazwa eventu
@@ -48,10 +46,10 @@ const renderPages = (pages) => {
         <li class="page">...</li>
         <li class="page">${totalPages}</li>`
     )
-    .join("");
+    .join("")
 
-  pages.innerHTML = markup;
-};
+  pages.innerHTML = markup
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
