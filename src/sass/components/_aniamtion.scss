@@ -1,0 +1,63 @@
+@import "./../utils/keyframes";
+
+%animation-puls-value {
+  animation-duration: 550ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 200ms;
+}
+
+%easy-transition {
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+// header
+.logo {
+  animation-name: puls-small;
+  @extend %animation-puls-value;
+
+  @media screen and (min-width: 768px) {
+    animation-name: puls-medium;
+  }
+
+  @media screen and (min-width: 1280px) {
+    animation-name: puls-big;
+  }
+
+  & > svg {
+    animation-name: puls-svg-small;
+    @extend %animation-puls-value;
+
+    @media screen and (min-width: 768px) {
+      animation-name: puls-svg-medium;
+    }
+
+    @media screen and (min-width: 1280px) {
+      animation-name: puls-svg-big;
+    }
+  }
+}
+
+#event-serch,
+#choose-country {
+  @extend %easy-transition;
+  &:focus {
+    animation-name: puls-shadow;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.title > h1 {
+  @extend %easy-transition;
+}
+// end header
+
+// footer
+.footer__text {
+  @extend %easy-transition;
+}
+// end footer
