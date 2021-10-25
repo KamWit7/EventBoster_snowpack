@@ -28,9 +28,8 @@
   }
 
   .logo {
+    overflow: hidden;
     position: absolute;
-    height: 180px;
-    width: 213.97px;
     top: -100px;
     left: -100px;
 
@@ -42,42 +41,18 @@
     backdrop-filter: blur(30px);
     border-radius: 50%;
 
-    & > svg {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      top: 90px;
-      left: 100px;
-
-      @media screen and (min-width: 768px) {
-        width: calc(100px * calc(359 / 213.9));
-        height: calc(100px * calc(302 / 180));
-        top: calc(90px * calc(359 / 213.9));
-        left: calc(100px * calc(302 / 180));
-      }
-
-      @media screen and (min-width: 1280px) {
-        width: calc(100px * calc(477 / 213.9));
-        height: calc(100px * calc(402 / 180));
-        top: calc(90px * calc(477 / 213.9));
-        left: calc(100px * calc(402 / 180));
-      }
-    }
-
     @media screen and (min-width: 768px) {
-      position: absolute;
-      height: 302px;
-      width: 359px;
       left: -179px;
       top: -160px;
-      overflow: hidden;
     }
 
     @media screen and (min-width: 1280px) {
-      height: 402px;
-      width: 477px;
       left: -239px;
       top: -240px;
+    }
+
+    & > svg {
+      position: absolute;
     }
   }
 
