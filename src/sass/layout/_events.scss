@@ -172,7 +172,7 @@
     width: 233px;
     height: 30px;
 
-    .page {
+    %page-position {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -184,6 +184,10 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 1.214;
+    }
+
+    .page {
+      @extend %page-position;
 
       &:hover {
         color: getColor(font-main-color);
@@ -191,6 +195,10 @@
         border-radius: 10px 0;
         cursor: pointer;
       }
+    }
+
+    .page-dots {
+      @extend %page-position;
     }
   }
 }
