@@ -1316,10 +1316,11 @@ img {
   line-height: 1.214;
 }
 
-.events .pages .page:hover, .events .pages .page:focus {
+.events .pages .page:hover {
   color: #dc56c5;
   border: 1px solid #dc56c5;
   border-radius: 10px 0;
+  cursor: pointer;
 }
 
 .footer > .container {

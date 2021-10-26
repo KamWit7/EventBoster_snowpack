@@ -1,196 +1,196 @@
 @import "../utils/variable";
 
-.events{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-& > .container {
+.events {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: space-between;
-  max-width: 310px;
-  margin-top: -51px;
-
-  @media screen and (min-width: 768px) {
-    max-width: 610px;
-    margin-top: 0;
-  }
-
-  @media screen and (min-width: 1280px) {
-    max-width: 946px;
-    margin-top: -47px;
-  }
-
-  .event {
+  flex-direction: column;
+  align-items: center;
+  & > .container {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: space-between;
-
-    text-align: center;
-    position: relative;
-    margin-bottom: 38px;
-
-    &:nth-child(n) {
-      margin-left: 14px;
-    }
-    &:nth-child(2n + 1) {
-      margin-left: 0;
-    }
-    &:nth-last-child(-n + 2) {
-      margin-bottom: 0;
-    }
+    max-width: 310px;
+    margin-top: -51px;
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 58px;
-
-      &:nth-child(n) {
-        margin-left: 27px;
-      }
-      &:nth-child(3n + 1) {
-        margin-left: 0;
-      }
-
-      &:nth-last-child(-n + 3) {
-        margin-bottom: 0;
-      }
+      max-width: 610px;
+      margin-top: 0;
     }
 
     @media screen and (min-width: 1280px) {
-      margin-bottom: 63px;
-      margin-left: 70px;
+      max-width: 946px;
+      margin-top: -47px;
+    }
+
+    .event {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: space-between;
+
+      text-align: center;
+      position: relative;
+      margin-bottom: 38px;
 
       &:nth-child(n) {
-        margin-left: 70px;
+        margin-left: 14px;
       }
-
-      &:nth-child(4n + 1) {
+      &:nth-child(2n + 1) {
         margin-left: 0;
       }
-      &:nth-last-child(-n + 4) {
+      &:nth-last-child(-n + 2) {
         margin-bottom: 0;
       }
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 109px;
-      height: 101px;
-      left: 30px;
-      top: -10px;
-      border: 1px solid getColor(font-main-color-transparent);
-      box-sizing: border-box;
-      border-radius: 50px 0px;
 
       @media screen and (min-width: 768px) {
-        width: 153px;
-        height: 143px;
-        left: 43px;
-        top: -14px;
-      }
+        margin-bottom: 58px;
 
-      @media screen and (min-width: 1280px) {
-      }
-    }
+        &:nth-child(n) {
+          margin-left: 27px;
+        }
+        &:nth-child(3n + 1) {
+          margin-left: 0;
+        }
 
-    &__img > img {
-      width: 128px;
-      height: 161px;
-      border-radius: 50px 0px;
-
-      @media screen and (min-width: 768px) {
-        width: 180px;
-        height: 227px;
-      }
-
-      @media screen and (min-width: 1280px) {
-        width: 180px;
-        height: 227px;
-      }
-    }
-    &__title > h2 {
-      width: 128px;
-      margin-top: 5px;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 1.214;
-
-      @media screen and (min-width: 768px) {
-        width: 184px;
-        font-size: 16px;
-        line-height: 1.25;
-      }
-    }
-    &__start > span {
-      color: getColor(font-second-color);
-      margin-top: 5px;
-      font-size: 14px;
-      line-height: 1.214;
-      font-style: 400;
-
-      @media screen and (min-width: 768px) {
-        font-size: 16px;
-        line-height: 1.25;
-      }
-    }
-    &__place {
-      margin-top: 5px;
-
-      color: getColor(font-second-color);
-      & > svg {
-        width: 6px;
-        height: 9px;
-
-        @media screen and(min-width: 768px) {
-          width: 9px;
-          height: 12px;
+        &:nth-last-child(-n + 3) {
+          margin-bottom: 0;
         }
       }
-      & > span {
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 1.22;
+
+      @media screen and (min-width: 1280px) {
+        margin-bottom: 63px;
+        margin-left: 70px;
+
+        &:nth-child(n) {
+          margin-left: 70px;
+        }
+
+        &:nth-child(4n + 1) {
+          margin-left: 0;
+        }
+        &:nth-last-child(-n + 4) {
+          margin-bottom: 0;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 109px;
+        height: 101px;
+        left: 30px;
+        top: -10px;
+        border: 1px solid getColor(font-main-color-transparent);
+        box-sizing: border-box;
+        border-radius: 50px 0px;
 
         @media screen and (min-width: 768px) {
-          font-size: 14px;
-          line-height: 1.214;
+          width: 153px;
+          height: 143px;
+          left: 43px;
+          top: -14px;
+        }
+
+        @media screen and (min-width: 1280px) {
+        }
+      }
+
+      &__img > img {
+        width: 128px;
+        height: 161px;
+        border-radius: 50px 0px;
+
+        @media screen and (min-width: 768px) {
+          width: 180px;
+          height: 227px;
+        }
+
+        @media screen and (min-width: 1280px) {
+          width: 180px;
+          height: 227px;
+        }
+      }
+      &__title > h2 {
+        width: 128px;
+        margin-top: 5px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.214;
+
+        @media screen and (min-width: 768px) {
+          width: 184px;
+          font-size: 16px;
+          line-height: 1.25;
+        }
+      }
+      &__start > span {
+        color: getColor(font-second-color);
+        margin-top: 5px;
+        font-size: 14px;
+        line-height: 1.214;
+        font-style: 400;
+
+        @media screen and (min-width: 768px) {
+          font-size: 16px;
+          line-height: 1.25;
+        }
+      }
+      &__place {
+        margin-top: 5px;
+
+        color: getColor(font-second-color);
+        & > svg {
+          width: 6px;
+          height: 9px;
+
+          @media screen and(min-width: 768px) {
+            width: 9px;
+            height: 12px;
+          }
+        }
+        & > span {
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 1.22;
+
+          @media screen and (min-width: 768px) {
+            font-size: 14px;
+            line-height: 1.214;
+          }
         }
       }
     }
   }
-}
 
-.pages {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: getColor(font-second-color);
-  margin-top: 60px;
-  width: 233px;
-  height: 30px;
-
-  .page {
+  .pages {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    margin-left: 7px;
-    width: 30px;
+    color: getColor(font-second-color);
+    margin-top: 60px;
+    width: 233px;
     height: 30px;
-    text-align: center;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.214;
 
-    &:hover,
-    &:focus {
-      color: getColor(font-main-color);
-      border: 1px solid getColor(font-main-color);
-      border-radius: 10px 0;
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      margin-left: 7px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.214;
+
+      &:hover {
+        color: getColor(font-main-color);
+        border: 1px solid getColor(font-main-color);
+        border-radius: 10px 0;
+        cursor: pointer;
+      }
     }
   }
-}
 }
