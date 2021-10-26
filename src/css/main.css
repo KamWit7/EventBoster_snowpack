@@ -1295,7 +1295,7 @@ img {
   height: 30px;
 }
 
-.events .pages .page {
+.events .pages .page, .events .pages .page-dots {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
