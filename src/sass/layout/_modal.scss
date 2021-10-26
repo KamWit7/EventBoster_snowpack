@@ -1,3 +1,215 @@
+@import "../utils/variable";
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .wrapper {
+    position: fixed;
+    .close {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      width: 17px;
+      height: 17px;
+    }
+
+    .imgRound {
+      width: 102px;
+      height: 102px;
+      margin: 75px auto 18px;
+
+      background-image: url("./../images/temporary/pic.png");
+      background-position: 50% 50%;
+      border-radius: 50% 50%;
+
+      @media screen and (min-width: 768px) {
+        width: 70px;
+        height: 70px;
+        margin: 28px auto 43px;
+      }
+
+      @media screen and (min-width: 1280px) {
+        width: 132px;
+        height: 132px;
+        margin: 62px auto 41px;
+      }
+    }
+  }
+
+  .wrapper {
+    width: 272px;
+    height: 915px;
+    border-radius: 150px 0px;
+    background-color: getColor(bg-modal);
+
+    @media screen and (min-width: 768px) {
+      width: 595px;
+      height: 831px;
+      border-radius: 300px 0px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 930px;
+      height: 1023px;
+    }
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    @media screen and(min-width: 768px) {
+      align-items: flex-start;
+      text-align: start;
+    }
+
+    &__row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    &__img {
+      visibility: hidden;
+      display: none;
+      background-color: orange; // temporary
+
+      @media screen and (min-width: 768px) {
+        visibility: visible;
+        display: block;
+        width: 233px;
+        height: 416px;
+        margin: 0 30px 0 50px;
+      }
+
+      @media screen and (min-width: 1280px) {
+        width: 360px;
+        height: 641px;
+        margin: 0 60px 0 30px;
+      }
+    }
+
+    &__title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.2;
+      @media screen and (min-width: 1280px) {
+        font-size: 24px;
+        line-height: 1.208;
+      }
+    }
+
+    &__text {
+      color: getColor(font-dark-color);
+      width: 173px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.25;
+      margin: 5px 0 10px 0;
+
+      @media screen and (min-width: 1280px) {
+        font-size: 18px;
+        line-height: 1.22;
+        margin: 7px 0 20px 0;
+      }
+
+      &-width {
+        width: 243px;
+        @media screen and (min-width: 1280px) {
+          width: 450px;
+        }
+      }
+
+      &--label::before {
+        content: '';
+        display: inline-block;
+        background: url('./../images/modal/ticket.png');
+        // fill:red;
+        width: 24px;
+        height: 16px;
+        margin-right: 13px;
+        margin-left: 25px;
+
+        @media screen and (min-width: 768px) {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .btn {
+      &-buy {
+        background: linear-gradient(119deg, #4c00fe 0%, #dc56c5 80%);
+        background-size: 700%;
+        background-position: left;
+        color: getColor(font-second-color);
+        cursor: pointer;
+        width: 145px;
+        height: 40px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border-style: none;
+
+        &:hover,
+        &:focus {
+          animation: bg-grag;
+          animation-duration: 6000ms;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes bg-grag {
+          0% {
+            background-position: left;
+          }
+
+          50% {
+            background-position: right;
+          }
+
+          100% {
+            background-position: left;
+          }
+        }
+      }
+
+      &-author {
+        color: getColor(button-color);
+        border: 1px solid getColor(button-color);
+        background-color: transparent;
+        cursor: pointer;
+        width: 230px;
+        height: 40px;
+
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 1.25;
+
+        @media screen and (min-width: 768px) {
+          position: absolute;
+          bottom: 56px;
+          left: 170px;
+        }
+
+        @media screen and (min-width: 1280px) {
+          bottom: 62px;
+          left: 337px;
+        }
+
+        &:hover,
+        &:focus {
+          border: 1px solid getColor(font-main-color);
+        }
+      }
+    }
+  }
+}
+
 .backdrop{
     visibility: visible;
     background: rgba(32, 13, 29, 0.6);

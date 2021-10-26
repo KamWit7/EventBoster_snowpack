@@ -1,51 +1,38 @@
-import { API_KEY } from "./globalVAR";
+import { API_KEY } from "./globalVAR"
 
-<<<<<<< Updated upstream
-let perPage = 24;
-let page = 0;
-
-const pageNumber = document.querySelector("ul.pages");
-=======
 let size = 24;
 let page = 0;
 
-const pageNumber = document.querySelector("ul.pages");
 const ql = (selector) => document.querySelector(selector);
 const l = (s) => console.log(s);
->>>>>>> Stashed changes
 
-pageNumber.addEventListener("click", showPage);
-
-async function showPage(event) {
-  console.log(
-    "Jak klikasz to console loguje się czyli addeventlistener działa"
-  );
+async function apiCall(event) {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&per_page=${perPage}&page=${page}`
+    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${size}&page=${page}`
   )
     .then((pages) => {
-      return pages.json();
+      return pages.json()
     })
     .catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }
 
-<<<<<<< Updated upstream
-console.log(
-  showPage().then((apiResults) => {
-    console.log(apiResults);
-    console.log(apiResults.page);
-    console.log(apiResults._embedded.events[0]);
+function processedApiDate(apiCall) {
+  return apiCall().then((apiResults) => {
+    const events = apiResults._embedded.events.map((e) => {
+      return {
+        images: e.images,
+        eventName: e.name,
+        date: e.dates.start.localDate,
+        place: e._embedded.venues[0].name,
+      }
+    })
+    return events
   })
-);
+}
 
-// page._embedded.events[0].images - obrazek (jest kilka, który wybrać?)
-// page._embedded.events[0].name - nazwa eventu
-// page._embedded.events[0].dates.start.localDate - dzień rozpoczęcia
-// page._embedded.events[0]._embedded.venues.address.line1 - geo lokalizacja
-// page._embedded.events[0]._embedded.venues.name - nazwa lokalizacji
-=======
+
 function processedApiData(apiCall) {
   return apiCall().then((apiResults) => {
     const events = apiResults._embedded.events.map((e) => {
@@ -89,10 +76,6 @@ const renderGallery = (events) => {
   });
 };
 
-renderGallery(processedApiData(apiCall));
-
-processedApiData(apiCall).then((events) => {});
->>>>>>> Stashed changes
 
 const renderPages = (pages) => {
   const markup = pages
@@ -106,10 +89,10 @@ const renderPages = (pages) => {
         <li class="page">...</li>
         <li class="page">${totalPages}</li>`
     )
-    .join("");
+    .join("")
 
-  pages.innerHTML = markup;
-};
+  pages.innerHTML = markup
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -229,3 +212,23 @@ const renderPages = (pages) => {
 
 //   gallery.innerHTML = markup;
 // };
+
+////////////////////////////////////////////////////////////////////////////
+// console.log(`apiResults:`)
+// console.log(apiResults)
+// console.log("image")
+// console.log(apiResults._embedded.events[0].images) // tablica img
+// console.log("name")
+// console.log(apiResults._embedded.events[0].name)
+// console.log("data")
+// console.log(apiResults._embedded.events[0].dates.start.localDate)
+// console.log("place 1")
+// console.log(apiResults._embedded.events[0]._embedded.venues[0].name)
+// // console.log("place 2")
+// console.log(apiResults._embedded.events[0]._embedded.venues[0].address.line1)
+
+// page._embedded.events[0].images - obrazek (jest kilka, który wybrać?)
+// page._embedded.events[0].name - nazwa eventu
+// page._embedded.events[0].dates.start.localDate - dzień rozpoczęcia
+// page._embedded.events[0]._embedded.venues.address.line1 - geo lokalizacja
+// page._embedded.events[0]._embedded.venues[0].name - nazwa lokalizacji
