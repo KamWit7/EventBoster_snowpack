@@ -1,10 +1,10 @@
 import { API_KEY } from "./globalVAR"
 
-let size = 24
-let page = 0
+let size = 24;
+let page = 0;
 
-const pageNumber = document.querySelector("ul.pages")
-const l = (s) => console.log(s)
+const ql = (selector) => document.querySelector(selector);
+const l = (s) => console.log(s);
 
 async function apiCall(event) {
   return fetch(
@@ -32,17 +32,60 @@ function processedApiDate(apiCall) {
   })
 }
 
-processedApiDate(apiCall)
+
+function processedApiData(apiCall) {
+  return apiCall().then((apiResults) => {
+    const events = apiResults._embedded.events.map((e) => {
+      return {
+        images: e.images,
+        eventName: e.name,
+        date: e.dates.start.localDate,
+        place: e._embedded.venues[0].name,
+      };
+    });
+    return events;
+  });
+}
+
+const eventsContainer = ql(".events > .container");
+
+const renderGallery = (events) => {
+  l(events);
+  events.then((apiInfo) => {
+    const markup = apiInfo
+      .map(
+        (event, index) => `
+    <ul class="event">
+          <li class="event__img">
+          <img
+          src='${event.images[1].url}'
+          alt="Sports event"
+          />
+          </li>
+          <li class="event__title"><h2>${event.eventName}</h2></li>
+          <li class="event__start"><span>${event.date}</span></li>
+          <li class="event__place">
+          <svg><use href="./src/svg/symbol.svg#icon-pin"></use></svg>
+          <span>${event.place}</span>
+          </li>
+          </ul>
+          `
+      )
+      .join("");
+    eventsContainer.innerHTML = markup;
+  });
+};
+
 
 const renderPages = (pages) => {
   const markup = pages
     .map(
       (page) => `
-        <li class="page">${page}</li>
-        <li class="page">${page + 1}</li>
-        <li class="page">${page + 2}</li>
-        <li class="page">${page + 3}</li>
-        <li class="page">${page + 4}</li>
+            <li class="page">${page}</li>
+            <li class="page">${page + 1}</li>
+            <li class="page">${page + 2}</li>
+            <li class="page">${page + 3}</li>
+            <li class="page">${page + 4}</li>
         <li class="page">...</li>
         <li class="page">${totalPages}</li>`
     )
