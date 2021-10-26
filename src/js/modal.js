@@ -1,9 +1,9 @@
-console.log("modal window")
+// console.log("modal window")
 const modalShow = document.querySelectorAll('.event');
 const modal = document.querySelector('.wrapper')
 const backdrop = document.querySelector('.backdrop')
 const body = document.querySelector('body')
-console.log(modalShow)
+// console.log(modalShow)
 
 function openModal(){
     modal.classList.add('wrapper-active');
