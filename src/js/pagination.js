@@ -1,12 +1,34 @@
 import { API_KEY } from "./globalVAR"
 
-let size = 24;
-let page = 0;
+let size = 24
+let page = 0
 
-const ql = (selector) => document.querySelector(selector);
-const l = (s) => console.log(s);
+const ql = (selector) => document.querySelector(selector)
+const qla = (selector) => document.querySelectorAll(selector)
+const l = (s) => console.log(s)
 
-async function apiCall(event) {
+const eventsContainer = ql(".events > .container")
+const pagesChildren = [...qla(".page")]
+
+const nextPage = (pageNumber) => (page = pageNumber)
+const changePage = (nr) => {
+  nextPage(nr)
+  renderGallery(processedApiDate(apiCall))
+
+  let number = nr + 1
+  if (number > 3) {
+
+    for (let i = 0; i < pagesChildren.length - 1; i++) {
+      pagesChildren[i].textContent = number - 2 + i
+    }
+  } else {
+    for (let i = 0; i < pagesChildren.length - 1; i++) {
+      pagesChildren[i].textContent = i + 1
+    }
+  }
+}
+
+async function apiCall() {
   return fetch(
     `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${size}&page=${page}`
   )
@@ -32,25 +54,8 @@ function processedApiDate(apiCall) {
   })
 }
 
-
-function processedApiData(apiCall) {
-  return apiCall().then((apiResults) => {
-    const events = apiResults._embedded.events.map((e) => {
-      return {
-        images: e.images,
-        eventName: e.name,
-        date: e.dates.start.localDate,
-        place: e._embedded.venues[0].name,
-      };
-    });
-    return events;
-  });
-}
-
-const eventsContainer = ql(".events > .container");
-
 const renderGallery = (events) => {
-  l(events);
+  l(events)
   events.then((apiInfo) => {
     const markup = apiInfo
       .map(
@@ -71,28 +76,23 @@ const renderGallery = (events) => {
           </ul>
           `
       )
-      .join("");
-    eventsContainer.innerHTML = markup;
-  });
-};
-
-
-const renderPages = (pages) => {
-  const markup = pages
-    .map(
-      (page) => `
-            <li class="page">${page}</li>
-            <li class="page">${page + 1}</li>
-            <li class="page">${page + 2}</li>
-            <li class="page">${page + 3}</li>
-            <li class="page">${page + 4}</li>
-        <li class="page">...</li>
-        <li class="page">${totalPages}</li>`
-    )
-    .join("")
-
-  pages.innerHTML = markup
+      .join("")
+    eventsContainer.innerHTML = markup
+  })
 }
+
+const pageClick = () => {
+  pagesChildren.forEach((page) => {
+    page.addEventListener("click", () => {
+      let pageNumber = page.textContent
+      changePage(pageNumber - 1)
+      l(`Page nr: ${pageNumber}`)
+    })
+  })
+}
+
+renderGallery(processedApiDate(apiCall))
+pageClick()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
