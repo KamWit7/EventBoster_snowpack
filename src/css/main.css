@@ -1250,6 +1250,15 @@ img {
 }
 
 .events > .container .event__place {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-top: 5px;
   color: #fff;
 }
@@ -1266,16 +1275,20 @@ img {
   }
 }
 
-.events > .container .event__place > span {
+.events > .container .event__place > .location {
+  display: inline-block;
   font-weight: 600;
   font-size: 12px;
   line-height: 1.22;
+  width: 123px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
-  .events > .container .event__place > span {
+  .events > .container .event__place > .location {
     font-size: 14px;
     line-height: 1.214;
+    width: 150px;
   }
 }
 
