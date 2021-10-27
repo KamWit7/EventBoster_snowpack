@@ -1,33 +1,58 @@
 // import { API_KEY } from "./globalVAR"
-const API_KEY = 'n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM';
-let size = 24;
-let page = 0;
+const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
+let size = 24
+let page = 0
 
-const ql = selector => document.querySelector(selector);
-const qla = selector => document.querySelectorAll(selector);
-const l = s => console.log(s);
+const ql = (selector) => document.querySelector(selector)
+const qla = (selector) => document.querySelectorAll(selector)
+const l = (s) => console.log(s)
 
-const eventsContainer = ql('.events > .container');
-const pagesChildren = [...qla('.page')];
-const dots = ql('.page-dots');
+
+const eventsContainer = ql(".events > .container")
+const pagesChildren = [...qla(".page")]
+const dots = ql(".page-dots")
 
 //////MODAL
 
+const modalShows = () =>{
+  setTimeout(() => {
+    const modalShow = qla('.events > .container > .event');
+const wrapper = ql('.wrapper');
+l(modalShow);
+wrapper.addEventListener('click', renderModal)
+
+  }, 3000)
+  modalShows(processedApiDate(apiCall))
+}
+
+const renderModal = (events) =>{
+  events.then((apiInfo) => {
+    const markup = apiInfo
+      .map((event)=>
+        `<span>${this.eventName}</span>
+        `.join(""),
+        wrapper.innerHTML = markup
+      )
+
+})
+}
+
+
 ///////
 
-const nextPage = pageNumber => (page = pageNumber);
-const changePage = nr => {
-  nextPage(nr);
-  renderGallery(processedApiDate(apiCall));
+const nextPage = (pageNumber) => (page = pageNumber)
+const changePage = (nr) => {
+  nextPage(nr)
+  renderGallery(processedApiDate(apiCall))
 
-  let number = nr + 1;
+  let number = nr + 1
 
-  dots.style.display = 'flex';
+  dots.style.display = "flex"
 
   if (number >= 26) {
-    dots.style.display = 'none';
+    dots.style.display = "none"
     for (let i = 0; i < pagesChildren.length; i++) {
-      pagesChildren[i].textContent = 24 + i;
+      pagesChildren[i].textContent = 24 + i
     }
   } else if (number > 3) {
     for (let i = 0; i < pagesChildren.length - 1; i++) {
@@ -35,31 +60,31 @@ const changePage = nr => {
       //   pagesChildren[0].textContent = 1
       //   pagesChildren[0].classList.add('dots-for-one')
       // }
-      pagesChildren[i].textContent = number - 2 + i;
+      pagesChildren[i].textContent = number - 2 + i
     }
   } else {
     for (let i = 0; i < pagesChildren.length - 1; i++) {
-      pagesChildren[i].textContent = i + 1;
+      pagesChildren[i].textContent = i + 1
     }
   }
-};
+}
 
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${size}&page=${page}`,
+    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${size}&page=${page}`
   )
-    .then(pages => {
-      return pages.json();
+    .then((pages) => {
+      return pages.json()
     })
-    .catch(error => {
-      console.log(error);
-    });
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 function processedApiDate(apiCall) {
-  return apiCall().then(apiResults => {
-    console.log(apiResults);
-    const events = apiResults._embedded.events.map(e => {
+  return apiCall().then((apiResults) => {
+    console.log(apiResults)
+    const events = apiResults._embedded.events.map((e) => {
       return {
         images: e.images, // image array {10}
         eventName: e.name, // ivent name
@@ -69,53 +94,22 @@ function processedApiDate(apiCall) {
         place: e._embedded.venues[0].name,
         info: e.info,
         ticketUrl: e.url,
-        // price: e.priceRanges.min,
-      };
-    });
-    return events;
-  });
+     // price: e.priceRanges.min,
+        
+      }
+    })
+    return events
+  })
 }
 ///////////////////////////////
-/* const wrapper = ql('.wrapper');
-const modal = ql('.modal');
-console.log(wrapper);
 
-const renderModal = await (events => {
-  console.log('aa');
-  events.then(api => {
-    const mark = api
-      .map(
-        event => `
-        <span>${event.eventName}</span>`,
-      )
-      .join('');
 
-    wrapper.innerHTML = mark;
-  });
-});
-const findEvent = () => {
-  setTimeout(() => {
-    const modalEvt = qla('.event');
-    console.log(modalEvt);
-    modalEvt.forEach(item => {
-      item.addEventListener('click', item => {
-        
-        modal.classList.remove('is-hidden');
-        console.log(item.currentTarget);
-      });
-    });
-  }, 1000);
-};
-renderModal(processedApiDate(apiCall));
-findEvent();
- */
-/////////
-const renderGallery = events => {
-  l(events);
-  events.then(apiInfo => {
+const renderGallery = (events) => {
+  l(events)
+  events.then((apiInfo) => {
     const markup = apiInfo
       .map(
-        event => `
+        (event) => `
     <ul class="event">
           <li class="event__img">
           <img
@@ -130,28 +124,28 @@ const renderGallery = events => {
           <span class="location">${event.place}</span>
           </li>
           </ul>
-          `,
+          `
       )
-      .join('');
-    eventsContainer.innerHTML = markup;
-  });
-};
+      .join("")
+    eventsContainer.innerHTML = markup
+  })
+}
 
 const pageClick = () => {
-  pagesChildren.forEach(page => {
-    page.addEventListener('click', () => {
-      let pageNumber = page.textContent;
-      changePage(pageNumber - 1);
-      l(`Page nr: ${pageNumber}`);
-    });
-  });
-};
+  pagesChildren.forEach((page) => {
+    page.addEventListener("click", () => {
+      let pageNumber = page.textContent
+      changePage(pageNumber - 1)
+      l(`Page nr: ${pageNumber}`)
+    })
+  })
+}
 
-renderGallery(processedApiDate(apiCall));
+renderGallery(processedApiDate(apiCall))
 
-pageClick();
-
+pageClick()
 //modalShows(processedApiDate(apiCall))
+
 
 ////////////////////////////////////////////////////////////////////////////
 // console.log(`apiResults:`)
