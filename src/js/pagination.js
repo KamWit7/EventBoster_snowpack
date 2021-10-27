@@ -22,11 +22,15 @@ const changePage = (nr) => {
 
   if (number >= 26) {
     dots.style.display = "none"
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < pagesChildren.length; i++) {
       pagesChildren[i].textContent = 24 + i
     }
   } else if (number > 3) {
     for (let i = 0; i < pagesChildren.length - 1; i++) {
+      // if (number > 4) {
+      //   pagesChildren[0].textContent = 1
+      //   pagesChildren[0].classList.add('dots-for-one')
+      // }
       pagesChildren[i].textContent = number - 2 + i
     }
   } else {
@@ -79,7 +83,7 @@ const renderGallery = (events) => {
           <li class="event__start"><span>${event.date}</span></li>
           <li class="event__place">
           <svg><use href="./src/svg/symbol.svg#icon-pin"></use></svg>
-          <span>${event.place}</span>
+          <span class="location">${event.place}</span>
           </li>
           </ul>
           `

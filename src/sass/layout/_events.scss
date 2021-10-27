@@ -137,6 +137,9 @@
         }
       }
       &__place {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 5px;
 
         color: getColor(font-second-color);
@@ -149,14 +152,18 @@
             height: 12px;
           }
         }
-        & > span {
+        & > .location {
+          display: inline-block;
           font-weight: 600;
           font-size: 12px;
           line-height: 1.22;
+          width: 123px;
+          overflow: hidden;
 
           @media screen and (min-width: 768px) {
             font-size: 14px;
             line-height: 1.214;
+            width: 150px;
           }
         }
       }
@@ -196,9 +203,18 @@
         cursor: pointer;
       }
     }
-
     .page-dots {
       @extend %page-position;
     }
+
+    // .dots-for-one {
+    //   @extend %page-position;
+
+    //   &:after {
+    //     content: "...";
+    //     display: inline-block;
+    //     margin-left: 10px;
+    //   }
+    // }
   }
 }
