@@ -4,7 +4,7 @@ import { renderGallery } from "./gallery"
 
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 
-console.log(uuidv4())
+// console.log(uuidv4())
 
 let page = 0
 const nextPage = (pageNumber) => (page = pageNumber)
