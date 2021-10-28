@@ -26,22 +26,23 @@ export const renderGallery = (events) => {
           `
         )
         .join("")
-        //  loadingBox.style.display = "inline-block"
+      //  loadingBox.style.display = "inline-block"
       eventsContainer.innerHTML = markup
     })
     .then(() => {
-      loadingBox.style.display = "inline-block"
+      setTimeout(() => {
+        const loadingBox = ql(".loading-box")
+        loadingBox.style.display = "inline-block"
+      }, 0)
 
       setTimeout(() => {
         const eventsChildren = [...qla(".event")]
         const loadingBox = ql(".loading-box")
 
-        l(eventsChildren)
         eventsChildren.forEach((eve) => {
           eve.classList.remove("event--is-hidden")
         })
-        l(loadingBox)
         loadingBox.style.display = "none"
-      }, 2000)
+      }, 750)
     })
 }

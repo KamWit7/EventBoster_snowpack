@@ -23,7 +23,6 @@ function processedApiDate(apiCall) {
     const events = apiResults._embedded.events.map((e, idx) => {
       if (!("priceRanges" in e)) {
         l("no priceRanges " + idx)
-        // l([{ type: "No ticket left", currency: "?", min: 0, max: 0 }])
       }
 
       return {
