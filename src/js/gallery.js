@@ -1,4 +1,7 @@
-import { eventsContainer } from "./globalVAR"
+// import { eventsContainer } from "./globalVAR"
+
+const ql = (selector) => document.querySelector(selector)
+const eventsContainer = ql(".events > .container")
 
 export const renderGallery = (events) => {
   events.then((apiInfo) => {
@@ -25,4 +28,3 @@ export const renderGallery = (events) => {
     eventsContainer.innerHTML = markup
   })
 }
-
