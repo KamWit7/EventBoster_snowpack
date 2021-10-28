@@ -1,10 +1,7 @@
-import { SIZE, l, pagesChildren, dots } from "./globalVAR"
+"use strict"
+
+import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR"
 import { renderGallery } from "./gallery"
-// import { v4 as uuidv4 } from "uuid"
-
-const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
-
-// console.log(uuidv4())
 
 let page = 0
 const nextPage = (pageNumber) => (page = pageNumber)

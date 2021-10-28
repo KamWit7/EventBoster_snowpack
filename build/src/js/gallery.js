@@ -1,4 +1,4 @@
-import { eventsContainer } from "./globalVAR"
+import { eventsContainer } from "./globalVAR.js"
 
 export const renderGallery = (events) => {
   events.then((apiInfo) => {
@@ -25,4 +25,3 @@ export const renderGallery = (events) => {
     eventsContainer.innerHTML = markup
   })
 }
-

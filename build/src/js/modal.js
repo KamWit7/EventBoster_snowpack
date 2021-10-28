@@ -1,3 +1,35 @@
+import { wrapper, processedApiDate } from "./globalVAR.js"
+
+console.log(wrapper)
+
+const renderModal = await ((events) => {
+  console.log("aa")
+  events.then((api) => {
+    const mark = api
+      .map(
+        (event) => `
+        <span>${event.eventName}</span>`
+      )
+      .join("")
+
+    wrapper.innerHTML = mark
+  })
+})
+const findEvent = () => {
+  setTimeout(() => {
+    const modalEvt = qla(".event")
+    console.log(modalEvt)
+    modalEvt.forEach((item) => {
+      item.addEventListener("click", (item) => {
+        modal.classList.remove("is-hidden")
+        console.log(item.currentTarget)
+      })
+    })
+  }, 1000)
+}
+renderModal(processedApiDate(apiCall))
+findEvent()
+
 /* // console.log("modal window")
 const modalShow = document.querySelectorAll('.event');
 const modal = document.querySelector('.wrapper')

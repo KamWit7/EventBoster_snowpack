@@ -1,46 +1,56 @@
-// import { API_KEY } from "./globalVAR"
-const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
-let size = 24
+import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR.js"
+import { renderGallery } from "./gallery.js"
+
 let page = 0
-
-const ql = (selector) => document.querySelector(selector)
-const qla = (selector) => document.querySelectorAll(selector)
-const l = (s) => console.log(s)
-
-
-const eventsContainer = ql(".events > .container")
-const pagesChildren = [...qla(".page")]
-const dots = ql(".page-dots")
-
-//////MODAL
-
-const modalShows = () =>{
-  setTimeout(() => {
-    const modalShow = qla('.events > .container > .event');
-const wrapper = ql('.wrapper');
-l(modalShow);
-wrapper.addEventListener('click', renderModal)
-
-  }, 3000)
-  modalShows(processedApiDate(apiCall))
-}
-
-const renderModal = (events) =>{
-  events.then((apiInfo) => {
-    const markup = apiInfo
-      .map((event)=>
-        `<span>${this.eventName}</span>
-        `.join(""),
-        wrapper.innerHTML = markup
-      )
-
-})
-}
-
-
-///////
-
 const nextPage = (pageNumber) => (page = pageNumber)
+
+async function apiCall() {
+  return fetch(
+    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${SIZE}&page=${page}`
+  )
+    .then((pages) => {
+      return pages.json()
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+function processedApiDate(apiCall) {
+  return apiCall().then((apiResults) => {
+    l("apiResults")
+    l(apiResults)
+    const events = apiResults._embedded.events.map((e, idx) => {
+      if (!("priceRanges" in e)) {
+        l("no priceRanges " + idx)
+        // l([{ type: "No ticket left", currency: "?", min: 0, max: 0 }])
+      }
+
+      return {
+        images: e.images, // image array {10}
+        eventName: e.name, // ivent name
+        date: e.dates.start.localDate,
+        time: e.dates.start.localTime,
+        timezone: e.dates.timezone, // data start
+        place: e._embedded.venues[0].name,
+        info: e.info,
+        ticketUrl: e.url,
+        price:
+          "priceRanges" in e
+            ? e.priceRanges
+            : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
+      }
+    })
+
+    // l("events price log:")
+    // events.forEach((e) => {
+    //   l(e)
+    // })
+    l(events)
+    return events
+  })
+}
+
 const changePage = (nr) => {
   nextPage(nr)
   renderGallery(processedApiDate(apiCall))
@@ -69,68 +79,6 @@ const changePage = (nr) => {
   }
 }
 
-async function apiCall() {
-  return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${size}&page=${page}`
-  )
-    .then((pages) => {
-      return pages.json()
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-function processedApiDate(apiCall) {
-  return apiCall().then((apiResults) => {
-    console.log(apiResults)
-    const events = apiResults._embedded.events.map((e) => {
-      return {
-        images: e.images, // image array {10}
-        eventName: e.name, // ivent name
-        date: e.dates.start.localDate,
-        time: e.dates.start.localTime,
-        timezone: e.dates.timezone, // data start
-        place: e._embedded.venues[0].name,
-        info: e.info,
-        ticketUrl: e.url,
-     // price: e.priceRanges.min,
-        
-      }
-    })
-    return events
-  })
-}
-///////////////////////////////
-
-
-const renderGallery = (events) => {
-  l(events)
-  events.then((apiInfo) => {
-    const markup = apiInfo
-      .map(
-        (event) => `
-    <ul class="event">
-          <li class="event__img">
-          <img
-          src='${event.images[1].url}'
-          alt="Sports event"
-          />
-          </li>
-          <li class="event__title"><h2>${event.eventName}</h2></li>
-          <li class="event__start"><span>${event.date}</span></li>
-          <li class="event__place">
-          <svg><use href="./src/svg/symbol.svg#icon-pin"></use></svg>
-          <span class="location">${event.place}</span>
-          </li>
-          </ul>
-          `
-      )
-      .join("")
-    eventsContainer.innerHTML = markup
-  })
-}
-
 const pageClick = () => {
   pagesChildren.forEach((page) => {
     page.addEventListener("click", () => {
@@ -144,8 +92,8 @@ const pageClick = () => {
 renderGallery(processedApiDate(apiCall))
 
 pageClick()
-//modalShows(processedApiDate(apiCall))
 
+//modalShows(processedApiDate(apiCall))
 
 ////////////////////////////////////////////////////////////////////////////
 // console.log(`apiResults:`)
