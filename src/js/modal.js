@@ -1,4 +1,4 @@
-import {} from "./globalVAR"
+import { wrapper, processedApiDate } from "./globalVAR"
 
 console.log(wrapper)
 

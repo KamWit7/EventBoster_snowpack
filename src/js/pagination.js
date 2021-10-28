@@ -29,7 +29,7 @@ function processedApiDate(apiCall) {
       return {
         images: e.images, // image array {10}
         eventName: e.name, // ivent name
-        date: e.dates.start.localDate, 
+        date: e.dates.start.localDate,
         time: e.dates.start.localTime,
         timezone: e.dates.timezone, // data start
         place: e._embedded.venues[0].name,
