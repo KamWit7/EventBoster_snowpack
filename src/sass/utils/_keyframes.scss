@@ -158,16 +158,15 @@
 }
 // logo > svg end
 
-
-// form 
-  @keyframes puls-shadow {
-    0% {
-      box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
-    }
-    100% {
-      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
-    }
+// form
+@keyframes puls-shadow {
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
   }
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+}
 
 // form end
 
@@ -189,3 +188,24 @@
   }
 }
 // end loading
+
+// event
+@keyframes opacityEvent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityBox {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+// end envent
+

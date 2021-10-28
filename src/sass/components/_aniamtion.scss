@@ -61,3 +61,20 @@
   @extend %easy-transition;
 }
 // end footer
+
+.event {
+  opacity: 0;
+  @extend %animation-puls-value;
+  animation-name: opacityEvent;
+  transition-delay: 750ms;
+  animation-duration: 650ms;
+
+}
+
+.loading-box {
+  opacity: 1;
+  @extend %animation-puls-value;
+  animation-name: opacityBox;
+  animation-duration: 750ms;
+}
+
