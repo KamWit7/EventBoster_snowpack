@@ -1,10 +1,14 @@
 @import "./../utils/keyframes";
+@import "./../utils/variable";
+
+
 
 .loading-box {
   width: 152px;
   height: 152px;
   display: inline-block;
   overflow: hidden;
+  margin: 100px 0 40px;
   background: rgba(255, 255, 255, 0);
 }
 

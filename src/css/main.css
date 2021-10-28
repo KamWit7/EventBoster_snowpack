@@ -558,6 +558,7 @@ img {
   height: 152px;
   display: inline-block;
   overflow: hidden;
+  margin: 100px 0 40px;
   background: rgba(255, 255, 255, 0);
 }
 
@@ -1069,6 +1070,7 @@ img {
 }
 
 .events {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1196,6 +1198,13 @@ img {
     left: 43px;
     top: -14px;
   }
+}
+
+.events > .container .event--is-hidden {
+  visibility: hidden;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .events > .container .event__img > img {

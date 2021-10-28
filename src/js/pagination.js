@@ -1,6 +1,4 @@
-"use strict"
-
-import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR"
+import { API_KEY, SIZE, l, pagesChildren, dots, qla } from "./globalVAR"
 import { renderGallery } from "./gallery"
 
 let page = 0
@@ -92,8 +90,9 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
-
 pageClick()
+
+
 
 //modalShows(processedApiDate(apiCall))
 
