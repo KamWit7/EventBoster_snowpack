@@ -1,6 +1,6 @@
 import { SIZE, l, pagesChildren, dots } from "./globalVAR"
 import { renderGallery } from "./gallery"
-import { v4 as uuidv4 } from "uuid"
+// import { v4 as uuidv4 } from "uuid"
 
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 
