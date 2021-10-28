@@ -1,5 +1,5 @@
-import { qla, l } from "./globalVAR"
-
+// import { qla, l } from "./globalVAR"
+const qla = (selector) => document.querySelectorAll(selector)
 const ql = (selector) => document.querySelector(selector)
 const eventsContainer = ql(".events > .container")
 
