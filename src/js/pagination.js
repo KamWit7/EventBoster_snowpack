@@ -1,5 +1,8 @@
-import { API_KEY, SIZE, l, pagesChildren, dots, qla } from "./globalVAR"
+import { l, pagesChildren, dots, qla } from "./globalVAR"
 import { renderGallery } from "./gallery"
+
+const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
+const SIZE = 24
 
 let page = 0
 const nextPage = (pageNumber) => (page = pageNumber)
@@ -90,8 +93,6 @@ const pageClick = () => {
 
 renderGallery(processedApiDate(apiCall))
 pageClick()
-
-
 
 //modalShows(processedApiDate(apiCall))
 
