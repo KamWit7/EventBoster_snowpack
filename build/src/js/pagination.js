@@ -1,5 +1,5 @@
-import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR"
-import { renderGallery } from "./gallery"
+import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR.js"
+import { renderGallery } from "./gallery.js"
 
 let page = 0
 const nextPage = (pageNumber) => (page = pageNumber)
