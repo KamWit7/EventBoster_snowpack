@@ -11,7 +11,8 @@ const SIZE = 24
 const pagesChildren = [...qla(".page")]
 const eventsChildren = [...qla(".event")]
 
-const dots = ql(".page-dots")
+const dotsEnd = ql(".page-dots")
+const dotsStart = ql(".page-dots--start")
 // PAGINATION END
 
 // GALLERY
@@ -30,9 +31,10 @@ export {
   eventsContainer,
   eventsChildren,
   pagesChildren,
-  dots,
+  dotsEnd,
+  dotsStart,
   wrapper,
   modal,
   qla,
-  ql
+  ql,
 }

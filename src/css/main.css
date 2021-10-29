@@ -1406,7 +1406,7 @@ img {
   height: 30px;
 }
 
-.events .pages .page, .events .pages .page-dots {
+.events .pages .page, .events .pages .page-dots, .events .pages .page-dots--start {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1427,11 +1427,15 @@ img {
   line-height: 1.214;
 }
 
-.events .pages .page:hover {
+.events .pages .focusPage, .events .pages .page:hover {
   color: #dc56c5;
   border: 1px solid #dc56c5;
   border-radius: 10px 0;
   cursor: pointer;
+}
+
+.events .pages .page-dots--start {
+  display: none;
 }
 
 .footer > .container {
