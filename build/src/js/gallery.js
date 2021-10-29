@@ -1,7 +1,4 @@
-// import { qla, l } from "./globalVAR"
-const qla = (selector) => document.querySelectorAll(selector)
-const ql = (selector) => document.querySelector(selector)
-const eventsContainer = ql(".events > .container")
+import { qla, eventsContainer, ql } from "./globalVAR.js"
 
 export const renderGallery = (events) => {
   events
