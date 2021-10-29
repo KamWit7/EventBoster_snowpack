@@ -1,8 +1,36 @@
-import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR.js"
+import {
+  API_KEY,
+  SIZE,
+  l,
+  pagesChildren,
+  dotsEnd,
+  dotsStart,
+} from "./globalVAR.js"
 import { renderGallery } from "./gallery.js"
 
 let page = 0
-const nextPage = (pageNumber) => (page = pageNumber)
+const setPage = (pageNumber) => (page = pageNumber)
+const showEnd = () => {
+  dotsEnd.style.display = "none" // no ends bots
+  for (let i = 0; i < pagesChildren.length; i++) {
+    pagesChildren[i].textContent = 24 + i
+  }
+}
+const showStartDots = (number) => {
+  if (number > 4) {
+    dotsStart.style.display = "flex"
+    pagesChildren[0].textContent = 1
+  }
+}
+const focusOnCurentPage = (number) => {
+  pagesChildren.forEach((page) => {
+    l(
+      page.textContent == number
+        ? page.classList.add("focusPage")
+        : page.classList.remove("focusPage")
+    )
+  })
+}
 
 async function apiCall() {
   return fetch(
@@ -18,7 +46,7 @@ async function apiCall() {
 
 function processedApiDate(apiCall) {
   return apiCall().then((apiResults) => {
-    l("apiResults")
+    l("Raw data:")
     l(apiResults)
     const events = apiResults._embedded.events.map((e, idx) => {
       if (!("priceRanges" in e)) {
@@ -40,42 +68,33 @@ function processedApiDate(apiCall) {
             : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
       }
     })
-
-    // l("events price log:")
-    // events.forEach((e) => {
-    //   l(e)
-    // })
-    l(events)
     return events
   })
 }
 
 const changePage = (nr) => {
-  nextPage(nr)
+  setPage(nr)
   renderGallery(processedApiDate(apiCall))
 
   let number = nr + 1
 
-  dots.style.display = "flex"
-
+  dotsEnd.style.display = "flex" // show end dots
   if (number >= 26) {
-    dots.style.display = "none"
-    for (let i = 0; i < pagesChildren.length; i++) {
-      pagesChildren[i].textContent = 24 + i
-    }
+    showEnd() // set end value 24 25 ... 29
+    showStartDots(number) // set comback to first page 1 ...
   } else if (number > 3) {
     for (let i = 0; i < pagesChildren.length - 1; i++) {
-      // if (number > 4) {
-      //   pagesChildren[0].textContent = 1
-      //   pagesChildren[0].classList.add('dots-for-one')
-      // }
       pagesChildren[i].textContent = number - 2 + i
     }
+    showStartDots(number) // set comback to first page 1 ...
   } else {
+    dotsStart.style.display = "none"
     for (let i = 0; i < pagesChildren.length - 1; i++) {
       pagesChildren[i].textContent = i + 1
     }
   }
+
+  focusOnCurentPage(number)
 }
 
 const pageClick = () => {
