@@ -64,11 +64,10 @@
 
 .event {
   opacity: 0;
-  @extend %animation-puls-value;
   animation-name: opacityEvent;
-  transition-delay: 750ms;
+  @extend %animation-puls-value;
+  animation-delay: 650ms;
   animation-duration: 650ms;
-
 }
 
 .loading-box {
@@ -77,4 +76,3 @@
   animation-name: opacityBox;
   animation-duration: 750ms;
 }
-

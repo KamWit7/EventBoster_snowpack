@@ -389,7 +389,7 @@ img {
 
 @-webkit-keyframes opacityEvent {
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -398,7 +398,7 @@ img {
 
 @keyframes opacityEvent {
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -591,7 +591,7 @@ img {
 
 @keyframes opacityEvent {
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -819,7 +819,7 @@ img {
 
 @keyframes opacityEvent {
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -910,8 +910,8 @@ img {
   opacity: 0;
   -webkit-animation-name: opacityEvent;
           animation-name: opacityEvent;
-  -webkit-transition-delay: 750ms;
-          transition-delay: 750ms;
+  -webkit-animation-delay: 650ms;
+          animation-delay: 650ms;
   -webkit-animation-duration: 650ms;
           animation-duration: 650ms;
 }

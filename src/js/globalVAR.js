@@ -15,7 +15,7 @@ const dots = ql(".page-dots")
 // PAGINATION END
 
 // GALLERY
-
+const eventsContainer = ql(".events > .container")
 // GALLERY END
 
 // MODAL
@@ -27,11 +27,12 @@ export {
   API_KEY,
   SIZE,
   l,
-  //   eventsContainer,
+  eventsContainer,
   eventsChildren,
   pagesChildren,
   dots,
   wrapper,
   modal,
   qla,
+  ql
 }
