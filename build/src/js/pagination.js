@@ -1,16 +1,5 @@
-// import { l, pagesChildren, dots, qla } from "./globalVAR"
+import { API_KEY, SIZE, l, pagesChildren, dots } from "./globalVAR.js"
 import { renderGallery } from "./gallery.js"
-
-const ql = (selector) => document.querySelector(selector)
-const qla = (selector) => document.querySelectorAll(selector)
-
-const l = (s) => console.log(s)
-const pagesChildren = [...qla(".page")]
-const dots = ql(".page-dots")
-
-
-const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
-const SIZE = 24
 
 let page = 0
 const nextPage = (pageNumber) => (page = pageNumber)
