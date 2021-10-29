@@ -1,11 +1,15 @@
-import { eventsContainer } from "./globalVAR.js"
+// import { qla, l } from "./globalVAR"
+const qla = (selector) => document.querySelectorAll(selector)
+const ql = (selector) => document.querySelector(selector)
+const eventsContainer = ql(".events > .container")
 
 export const renderGallery = (events) => {
-  events.then((apiInfo) => {
-    const markup = apiInfo
-      .map(
-        (event) => `
-    <ul class="event">
+  events
+    .then((apiInfo) => {
+      const markup = apiInfo
+        .map(
+          (event) => `
+    <ul class="event event--is-hidden">
           <li class="event__img">
           <img
           src='${event.images[1].url}'
@@ -20,8 +24,25 @@ export const renderGallery = (events) => {
           </li>
           </ul>
           `
-      )
-      .join("")
-    eventsContainer.innerHTML = markup
-  })
+        )
+        .join("")
+      //  loadingBox.style.display = "inline-block"
+      eventsContainer.innerHTML = markup
+    })
+    .then(() => {
+      setTimeout(() => {
+        const loadingBox = ql(".loading-box")
+        loadingBox.style.display = "inline-block"
+      }, 0)
+
+      setTimeout(() => {
+        const eventsChildren = [...qla(".event")]
+        const loadingBox = ql(".loading-box")
+
+        eventsChildren.forEach((eve) => {
+          eve.classList.remove("event--is-hidden")
+        })
+        loadingBox.style.display = "none"
+      }, 750)
+    })
 }
