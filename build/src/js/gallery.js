@@ -1,15 +1,15 @@
-import { qla, eventsContainer, ql } from "./globalVAR.js"
+import { qla, eventsContainer, ql, pages, l } from "./globalVAR.js"
 
 export const renderGallery = (events) => {
   events
     .then((apiInfo) => {
       const markup = apiInfo
-        .map(
-          (event) => `
-    <ul class="event event--is-hidden">
+        .map((event) => {
+          l(event.images)
+          return `<ul class="event event--is-hidden">
           <li class="event__img">
           <img
-          src='${event.images[1].url}'
+          src='${event.images[0].url}'
           alt="Sports event"
           />
           </li>
@@ -21,9 +21,8 @@ export const renderGallery = (events) => {
           </li>
           </ul>
           `
-        )
+        })
         .join("")
-      //  loadingBox.style.display = "inline-block"
       eventsContainer.innerHTML = markup
     })
     .then(() => {
@@ -37,9 +36,11 @@ export const renderGallery = (events) => {
         const loadingBox = ql(".loading-box")
 
         eventsChildren.forEach((eve) => {
-          eve.classList.remove("event--is-hidden")
+          eve.classList.remove("event--is-hidden") // all events
         })
+
+        pages.classList.remove("pages--is-hidden") // show next pages
         loadingBox.style.display = "none"
-      }, 750)
+      }, 350)
     })
 }

@@ -13,6 +13,7 @@ const eventsChildren = [...qla(".event")]
 
 const dotsEnd = ql(".page-dots")
 const dotsStart = ql(".page-dots--start")
+const pages = ql(".pages")
 // PAGINATION END
 
 // GALLERY
@@ -30,6 +31,7 @@ export {
   l,
   eventsContainer,
   eventsChildren,
+  pages,
   pagesChildren,
   dotsEnd,
   dotsStart,
