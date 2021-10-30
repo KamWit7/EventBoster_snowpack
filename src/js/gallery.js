@@ -5,7 +5,6 @@ export const renderGallery = (events) => {
     .then((apiInfo) => {
       const markup = apiInfo
         .map((event) => {
-          l(event.images)
           return `<ul class="event event--is-hidden">
           <li class="event__img">
           <img

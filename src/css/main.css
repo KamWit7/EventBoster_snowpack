@@ -910,8 +910,6 @@ img {
   opacity: 0;
   -webkit-animation-name: opacityEvent;
           animation-name: opacityEvent;
-  -webkit-animation-delay: 350ms;
-          animation-delay: 350ms;
   -webkit-animation-duration: 650ms;
           animation-duration: 650ms;
 }
