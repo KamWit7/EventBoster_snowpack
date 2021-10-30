@@ -1,3 +1,4 @@
+import { renderGallery } from "./gallery"
 import {
   API_KEY,
   SIZE,
@@ -5,8 +6,8 @@ import {
   pagesChildren,
   dotsEnd,
   dotsStart,
+  pages
 } from "./globalVAR"
-import { renderGallery } from "./gallery"
 
 let page = 0
 const setPage = (pageNumber) => (page = pageNumber)
@@ -93,7 +94,7 @@ const changePage = (nr) => {
       pagesChildren[i].textContent = i + 1
     }
   }
-
+  pages.classList.add('pages--is-hidden')
   focusOnCurentPage(number)
 }
 

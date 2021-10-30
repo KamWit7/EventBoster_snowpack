@@ -611,7 +611,7 @@ img {
   width: 152px;
   height: 152px;
   overflow: hidden;
-  margin: 100px 0 40px;
+  margin: 15px 0 35px;
   background: rgba(255, 255, 255, 0);
 }
 
@@ -910,8 +910,8 @@ img {
   opacity: 0;
   -webkit-animation-name: opacityEvent;
           animation-name: opacityEvent;
-  -webkit-animation-delay: 650ms;
-          animation-delay: 650ms;
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
   -webkit-animation-duration: 650ms;
           animation-duration: 650ms;
 }
@@ -1414,6 +1414,13 @@ img {
   margin-top: 60px;
   width: 233px;
   height: 30px;
+}
+
+.events .pages--is-hidden {
+  width: 0;
+  height: 0;
+  display: none;
+  visibility: hidden;
 }
 
 .events .pages .page, .events .pages .page-dots, .events .pages .page-dots--start {
