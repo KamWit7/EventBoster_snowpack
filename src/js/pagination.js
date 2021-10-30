@@ -4,13 +4,18 @@ import {
   SIZE,
   l,
   pagesChildren,
+  eventsChildren,
   dotsEnd,
   dotsStart,
-  pages
+  pages,
+  ql,
 } from "./globalVAR"
 
 let page = 0
+let keyword = "Rock"
+
 const setPage = (pageNumber) => (page = pageNumber)
+
 const showEnd = () => {
   dotsEnd.style.display = "none" // no ends bots
   for (let i = 0; i < pagesChildren.length; i++) {
@@ -33,9 +38,20 @@ const focusOnCurentPage = (number) => {
   })
 }
 
+// form
+const eventSerch = ql("#event-serch")
+
+const setKeyword = () => (keyword = eventSerch.value)
+
+eventSerch.addEventListener("keydown", () => {
+  setKeyword()
+  changePage(0)
+})
+// form end 
+
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${API_KEY}&size=${SIZE}&page=${page}`
+    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
   )
     .then((pages) => {
       return pages.json()
@@ -94,7 +110,8 @@ const changePage = (nr) => {
       pagesChildren[i].textContent = i + 1
     }
   }
-  pages.classList.add('pages--is-hidden')
+  // reload site
+  pages.classList.add("pages--is-hidden")
   focusOnCurentPage(number)
 }
 
@@ -103,7 +120,6 @@ const pageClick = () => {
     page.addEventListener("click", () => {
       let pageNumber = page.textContent
       changePage(pageNumber - 1)
-      l(`Page nr: ${pageNumber}`)
     })
   })
 }
