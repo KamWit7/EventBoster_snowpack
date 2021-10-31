@@ -1,4 +1,4 @@
-import { renderGallery } from "./gallery"
+import { renderGallery } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
@@ -9,7 +9,7 @@ import {
   dotsStart,
   pages,
   ql,
-} from "./globalVAR"
+} from "./globalVAR.js"
 
 let page = 0
 let keyword = "Rock"

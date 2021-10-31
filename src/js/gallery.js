@@ -1,4 +1,4 @@
-import { qla, eventsContainer, ql, pages, l } from "./globalVAR"
+import { qla, eventsContainer, ql, pages, l } from "./globalVAR.js"
 
 export const renderGallery = (events) => {
   events
