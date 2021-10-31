@@ -1,7 +1,7 @@
 import { qla, eventsContainer, ql, pages, l } from "./globalVAR.js"
 
 export const renderGallery = (events) => {
-  events
+  return events
     .then((apiInfo) => {
       const markup = apiInfo
         .map((event) => {
@@ -41,5 +41,11 @@ export const renderGallery = (events) => {
         pages.classList.remove("pages--is-hidden") // show next pages
         loadingBox.style.display = "none"
       }, 350)
+    })
+    .catch((er) => {
+      l(`error in renderGallery: ${er}`)
+    })
+    .finally(() => {
+      // pages.classList.remove("pages--is-hidden")
     })
 }
