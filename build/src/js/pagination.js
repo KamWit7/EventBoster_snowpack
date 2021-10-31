@@ -1,25 +1,98 @@
+;`use script`
+
 import { renderGallery } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
   l,
   pagesChildren,
-  eventsChildren,
   dotsEnd,
   dotsStart,
   pages,
   ql,
+  eventSerch,
 } from "./globalVAR.js"
 
 let page = 0
 let keyword = "Rock"
+let totalPages = 0
 
 const setPage = (pageNumber) => (page = pageNumber)
 
-const showEnd = () => {
+// form
+
+eventSerch.addEventListener("keyup", () => {
+  keyword = eventSerch.value
+  l(`keyword: ${keyword}`)
+  changePage(0)
+})
+
+// form end
+
+async function apiCall() {
+  return fetch(
+    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+  )
+    .then((pages) => {
+      l("apiCALL")
+      return pages.json()
+    })
+    .catch((error) => {
+      console.log(`apiCall error: ${error}`)
+    })
+}
+
+function processedApiDate(apiCall) {
+  return apiCall()
+    .then((apiResults) => {
+      // niektóre strony nie posiadają danych D: start serching -> 'le' -> page -> 7 error
+      if (!("_embedded" in apiResults)) {
+        l("no _embedded in apiResults")
+        l(apiResults)
+        return {
+          images: "no", // przemyśleć strukturę danych
+          eventName: "no",
+          date: "no",
+          time: "no",
+          timezone: "no",
+          place: "",
+          info: "no",
+          ticketUrl: "no",
+          price: "no",
+        }
+      }
+
+      totalPages = apiResults.page.totalPages
+
+      l(`totalPages processedApiDate: ${totalPages}`)
+      l(apiResults)
+      return apiResults._embedded.events.map((e) => {
+        return {
+          images: e.images, // image array {10}
+          eventName: e.name, // ivent name
+          date: e.dates.start.localDate,
+          time: e.dates.start.localTime,
+          timezone: e.dates.timezone, // data start
+          place: e._embedded.venues[0].name,
+          info: e.info,
+          ticketUrl: e.url,
+          price:
+            "priceRanges" in e
+              ? e.priceRanges
+              : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
+        }
+      })
+    })
+    .catch((er) => {
+      l(`error in processedApiDate: ${er}`)
+    })
+}
+
+const showEnd = (lastPage) => {
   dotsEnd.style.display = "none" // no ends bots
+  let start = lastPage - pagesChildren.length
   for (let i = 0; i < pagesChildren.length; i++) {
-    pagesChildren[i].textContent = 24 + i
+    pagesChildren[i].textContent = start + i + 1
   }
 }
 const showStartDots = (number) => {
@@ -30,89 +103,54 @@ const showStartDots = (number) => {
 }
 const focusOnCurentPage = (number) => {
   pagesChildren.forEach((page) => {
-    l(
-      page.textContent == number
-        ? page.classList.add("focusPage")
-        : page.classList.remove("focusPage")
-    )
+    page.textContent == number
+      ? page.classList.add("focusPage")
+      : page.classList.remove("focusPage")
   })
 }
 
-// form
-const eventSerch = ql("#event-serch")
+const setLastPageInPages = (totalPages) => {
+  let lastPage = 0
+  if (totalPages >= 29) {
+    //dance ?
+    lastPage = 29
+  } else {
+    lastPage = totalPages
+    pagesChildren[pagesChildren.length - 1].textContent = totalPages
+  }
 
-const setKeyword = () => (keyword = eventSerch.value)
-
-eventSerch.addEventListener("keydown", () => {
-  setKeyword()
-  changePage(0)
-})
-// form end 
-
-async function apiCall() {
-  return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
-  )
-    .then((pages) => {
-      return pages.json()
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-function processedApiDate(apiCall) {
-  return apiCall().then((apiResults) => {
-    l("Raw data:")
-    l(apiResults)
-    const events = apiResults._embedded.events.map((e, idx) => {
-      if (!("priceRanges" in e)) {
-        l("no priceRanges " + idx)
-      }
-
-      return {
-        images: e.images, // image array {10}
-        eventName: e.name, // ivent name
-        date: e.dates.start.localDate,
-        time: e.dates.start.localTime,
-        timezone: e.dates.timezone, // data start
-        place: e._embedded.venues[0].name,
-        info: e.info,
-        ticketUrl: e.url,
-        price:
-          "priceRanges" in e
-            ? e.priceRanges
-            : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
-      }
-    })
-    return events
-  })
+  return lastPage // no more then 29 pages
 }
 
 const changePage = (nr) => {
   setPage(nr)
-  renderGallery(processedApiDate(apiCall))
+  renderGallery(processedApiDate(apiCall)).then(() => {
+    let number = nr + 1
+    l(`totalPages changePage ${totalPages}`)
+    l(`curentPgae changePage ${number}`)
+    let lastPage = setLastPageInPages(totalPages)
 
-  let number = nr + 1
+    l(`totalPages setLastPageInPages ${setLastPageInPages(totalPages)}`)
 
-  dotsEnd.style.display = "flex" // show end dots
-  if (number >= 26) {
-    showEnd() // set end value 24 25 ... 29
-    showStartDots(number) // set comback to first page 1 ...
-  } else if (number > 3) {
-    for (let i = 0; i < pagesChildren.length - 1; i++) {
-      pagesChildren[i].textContent = number - 2 + i
+    dotsEnd.style.display = "flex" // show end dots
+    if (number > lastPage - 3) {
+      showEnd(lastPage) // set end value 24 25 ... 29
+      showStartDots(number) // set comback to first page 1 ...
+    } else if (number > 3) {
+      for (let i = 0; i < pagesChildren.length - 1; i++) {
+        pagesChildren[i].textContent = number - 2 + i
+      }
+      showStartDots(number) // set comback to first page 1 ...
+    } else {
+      dotsStart.style.display = "none"
+      for (let i = 0; i < pagesChildren.length - 1; i++) {
+        pagesChildren[i].textContent = i + 1
+      }
     }
-    showStartDots(number) // set comback to first page 1 ...
-  } else {
-    dotsStart.style.display = "none"
-    for (let i = 0; i < pagesChildren.length - 1; i++) {
-      pagesChildren[i].textContent = i + 1
-    }
-  }
-  // reload site
-  pages.classList.add("pages--is-hidden")
-  focusOnCurentPage(number)
+    // reload site
+    pages.classList.add("pages--is-hidden")
+    focusOnCurentPage(number)
+  })
 }
 
 const pageClick = () => {
@@ -126,6 +164,7 @@ const pageClick = () => {
 
 renderGallery(processedApiDate(apiCall))
 pageClick()
+focusOnCurentPage(1)
 
 //modalShows(processedApiDate(apiCall))
 

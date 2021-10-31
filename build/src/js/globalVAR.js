@@ -8,8 +8,9 @@ const l = (s) => console.log(s)
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 const SIZE = 24
 
+const eventSerch = ql("#event-serch")
+
 const pagesChildren = [...qla(".page")]
-const eventsChildren = [...qla(".event")]
 
 const dotsEnd = ql(".page-dots")
 const dotsStart = ql(".page-dots--start")
@@ -30,7 +31,7 @@ export {
   SIZE,
   l,
   eventsContainer,
-  eventsChildren,
+  eventSerch,
   pages,
   pagesChildren,
   dotsEnd,
