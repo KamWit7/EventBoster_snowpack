@@ -3,7 +3,9 @@ import { qla, eventsContainer, ql, pages, l } from "./globalVAR.js"
 export const renderGallery = (events) => {
   return events
     .then((apiInfo) => {
-      const markup = apiInfo
+      l("apiInfo")
+      l(apiInfo)
+      const markup = apiInfo //undf.map()
         .map((event) => {
           return `<ul class="event event--is-hidden">
           <li class="event__img">
