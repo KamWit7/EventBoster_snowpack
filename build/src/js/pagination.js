@@ -1,6 +1,7 @@
 ;`use script`
 
 import { renderGallery } from "./gallery.js"
+import { renderModal } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
@@ -31,7 +32,7 @@ eventSerch.addEventListener("keyup", () => {
 
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}&countryCode=FR`
   )
     .then((pages) => {
       l("apiCALL")
@@ -76,17 +77,21 @@ function processedApiDate(apiCall) {
           place: e._embedded.venues[0].name,
           info: e.info,
           ticketUrl: e.url,
+          id: e.id ,
+         countryCode: e._embedded.venues[0].country.name,
           price:
             "priceRanges" in e
               ? e.priceRanges
               : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
         }
       })
+      
     })
     .catch((er) => {
       l(`error in processedApiDate: ${er}`)
     })
 }
+
 
 const showEnd = (lastPage) => {
   dotsEnd.style.display = "none" // no ends bots
@@ -124,6 +129,7 @@ const setLastPageInPages = (totalPages) => {
 
 const changePage = (nr) => {
   setPage(nr)
+  
   renderGallery(processedApiDate(apiCall)).then(() => {
     let number = nr + 1
     l(`totalPages changePage ${totalPages}`)
@@ -150,6 +156,7 @@ const changePage = (nr) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(number)
+    renderModal(processedApiDate(apiCall))
   })
 }
 
@@ -163,6 +170,7 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
+renderModal(processedApiDate(apiCall))
 pageClick()
 focusOnCurentPage(1)
 
