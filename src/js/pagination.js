@@ -10,7 +10,10 @@ import {
   dotsStart,
   pages,
   ql,
-  eventSerch,
+  eventSearch,
+  DEFAULT_PLACE,
+  DEFAULT_PRICE,
+  DEFAULT_API_RESPONSE,
 } from "./globalVAR.js"
 
 let page = 0
@@ -18,20 +21,21 @@ let keyword = "Rock"
 let totalPages = 0
 
 const setPage = (pageNumber) => (page = pageNumber)
+const setTotalPages = (allPages) => (totalPages = allPages)
+const setKeyword = (formValue) => (keyword = formValue)
 
 // form
-
-eventSerch.addEventListener("keyup", () => {
-  keyword = eventSerch.value
+eventSearch.addEventListener("keyup", () => {
+  setKeyword(eventSearch.value)
   l(`keyword: ${keyword}`)
   changePage(0)
 })
-
-// form end
+// form endz
 
 async function apiCall() {
   return fetch(
     `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+    // &countryCode=AU
   )
     .then((pages) => {
       l("apiCALL")
@@ -45,41 +49,30 @@ async function apiCall() {
 function processedApiDate(apiCall) {
   return apiCall()
     .then((apiResults) => {
-      // niektóre strony nie posiadają danych D: start serching -> 'le' -> page -> 7 error
+      l(apiResults)
       if (!("_embedded" in apiResults)) {
         l("no _embedded in apiResults")
-        l(apiResults)
-        return {
-          images: "no", // przemyśleć strukturę danych
-          eventName: "no",
-          date: "no",
-          time: "no",
-          timezone: "no",
-          place: "",
-          info: "no",
-          ticketUrl: "no",
-          price: "no",
-        }
+        setTotalPages(1)
+        return DEFAULT_API_RESPONSE
       }
 
-      totalPages = apiResults.page.totalPages
-
+      setTotalPages(apiResults.page.totalPages)
       l(`totalPages processedApiDate: ${totalPages}`)
-      l(apiResults)
+
       return apiResults._embedded.events.map((e) => {
         return {
-          images: e.images, // image array {10}
-          eventName: e.name, // ivent name
-          date: e.dates.start.localDate,
-          time: e.dates.start.localTime,
-          timezone: e.dates.timezone, // data start
-          place: e._embedded.venues[0].name,
-          info: e.info,
-          ticketUrl: e.url,
-          price:
-            "priceRanges" in e
-              ? e.priceRanges
-              : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
+          images: e.images ?? "", // image array {10}
+          eventName: e.name ?? "", // ivent name
+          date: e.dates.start.localDate ?? "",
+          time: e.dates.start.localTime ?? "",
+          timezone: e.dates.timezone ?? "", // data start
+          place:
+            "_embedded" in e
+              ? e._embedded.venues[0].name ?? DEFAULT_PLACE // .name ?
+              : DEFAULT_PLACE,
+          info: e.info ?? "",
+          ticketUrl: e.url ?? "",
+          price: e.priceRanges ?? DEFAULT_PRICE,
         }
       })
     })
@@ -112,44 +105,63 @@ const focusOnCurentPage = (number) => {
 const setLastPageInPages = (totalPages) => {
   let lastPage = 0
   if (totalPages >= 29) {
-    //dance ?
     lastPage = 29
+    pagesChildren[pagesChildren.length - 1].textContent = lastPage
   } else {
     lastPage = totalPages
     pagesChildren[pagesChildren.length - 1].textContent = totalPages
   }
-
   return lastPage // no more then 29 pages
 }
 
-const changePage = (nr) => {
-  setPage(nr)
+const changePage = (pageNumber) => {
+  setPage(pageNumber)
   renderGallery(processedApiDate(apiCall)).then(() => {
-    let number = nr + 1
     l(`totalPages changePage ${totalPages}`)
-    l(`curentPgae changePage ${number}`)
+    l(`pageNumber changePage ${pageNumber}`)
     let lastPage = setLastPageInPages(totalPages)
 
     l(`totalPages setLastPageInPages ${setLastPageInPages(totalPages)}`)
 
     dotsEnd.style.display = "flex" // show end dots
-    if (number > lastPage - 3) {
-      showEnd(lastPage) // set end value 24 25 ... 29
-      showStartDots(number) // set comback to first page 1 ...
-    } else if (number > 3) {
-      for (let i = 0; i < pagesChildren.length - 1; i++) {
-        pagesChildren[i].textContent = number - 2 + i
+
+    if (lastPage > 6) {
+      //restart when last page was smaler then 6
+      pagesChildren.forEach((page) => {
+        page.style.display = "flex"
+      })
+      dotsStart.style.display = "flex"
+      dotsEnd.style.display = "flex"
+    }
+
+    l("lastPage: " + lastPage)
+    if (lastPage < 6) {
+      dotsStart.style.display = "none"
+      dotsEnd.style.display = "none"
+      for (let i = 0; i < pagesChildren.length; i++) {
+        if (lastPage > i) pagesChildren[i].textContent = i + 1
+        else {
+          pagesChildren[i].style.display = "none"
+        }
       }
-      showStartDots(number) // set comback to first page 1 ...
+    } else if (pageNumber > lastPage - 3) {
+      showEnd(lastPage) // set end value 24 25 ... 29
+      showStartDots(pageNumber) // set comback to first page 1 ...
+    } else if (pageNumber > 3) {
+      for (let i = 0; i < pagesChildren.length - 1; i++) {
+        pagesChildren[i].textContent = pageNumber - 2 + i
+      }
+      showStartDots(pageNumber) // set comback to first page 1 ...
     } else {
       dotsStart.style.display = "none"
+
       for (let i = 0; i < pagesChildren.length - 1; i++) {
         pagesChildren[i].textContent = i + 1
       }
     }
     // reload site
     pages.classList.add("pages--is-hidden")
-    focusOnCurentPage(number)
+    focusOnCurentPage(pageNumber)
   })
 }
 
@@ -157,7 +169,7 @@ const pageClick = () => {
   pagesChildren.forEach((page) => {
     page.addEventListener("click", () => {
       let pageNumber = page.textContent
-      changePage(pageNumber - 1)
+      changePage(pageNumber)
     })
   })
 }
