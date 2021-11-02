@@ -102,6 +102,11 @@
       &__wrapper {
         position: relative;
 
+        &--drop {
+          height: 65px;
+          position: relative;
+        }
+
         @media screen and(min-width:768px) {
           margin-top: 27px;
         }
@@ -147,8 +152,7 @@
           }
         }
 
-        .loop,
-        .down-arrow {
+        .loop {
           position: absolute;
           width: 14px;
           height: 14px;
@@ -189,4 +193,83 @@
       rgba(14, 14, 14, 0.8) 100%
     );
   }
+}
+
+// dorop down
+
+.drop-down {
+  position: relative;
+  z-index: 1000000000;
+  list-style: none;
+  overflow: auto;
+  box-sizing: border-box;
+  transition: height 0.3s ease;
+
+  width: 270px;
+  height: 170px;
+  margin-top: 25px;
+  // padding: 10px 40px;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border-style: none;
+
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.nav-button {
+  display: block;
+  color: getColor(font-gray-color);
+}
+
+.drop-down.closed {
+  overflow: hidden;
+  height: 40px;
+}
+
+.drop-down li {
+  width: 100%;
+  border-bottom: 3px solid getColor(font-gray-color);
+  padding-left: 0;
+  & a {
+    display: block;
+    color: getColor(font-gray-color);
+    text-decoration: none;
+    padding: 10px 40px;
+  }
+}
+
+.down-arrow {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 14px;
+  right: 30px;
+}
+
+#style-1::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: transparent;
+  width: 10px;
+  // padding-bottom: 5px;
+  // padding-top: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 2px;
+}
+
+#style-1::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background-color: transparent;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
 }

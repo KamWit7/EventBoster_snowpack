@@ -19,7 +19,7 @@
     <section class="header">
       <div class="container">
         <ul class="header__list">
-          <li class="logo">
+          <li class="logo" >
             <svg><use href="./src/svg/symbol.svg#icon-logo" /></svg>
           </li>
           <li class="title"><h1>FIND BEST EVENTS AROUND THE WORLD</h1></li>
@@ -36,17 +36,25 @@
                   <use href="./src/svg/symbol.svg#icon-loop"></use>
                 </svg>
               </div>
-              <div class="serch__wrapper">
-                <input
-                  type="text"
-                  id="choose-country"
-                  placeholder="Choose country"
-                  maxlength="20"
-                />
-                <svg class="down-arrow">
-                  <use href="./src/svg/symbol.svg#icon-arrow"></use>
-                </svg>
+              <div class="serch__wrapper serch__wrapper--drop">
+                <ul class="drop-down closed" id="style-1">
+                  <li>
+                    <a href="#" id="start" class="nav-button">Choose country</a>
+                    <svg class="down-arrow">
+                      <use href="./src/svg/symbol.svg#icon-arrow"></use>
+                    </svg>
+                  </li>
+                  <!-- render in js -->
+                </ul>
               </div>
+
+              <!-- <input
+                type="text"
+                id="choose-country"
+                placeholder="Choose country"
+                maxlength="20"
+              />
+              -->
             </form>
           </li>
         </ul>
@@ -95,11 +103,11 @@
 
     <section class="modal backdrop is-hidden">
       <div class="wrapper">
-        <!-- <svg class="close">
+        <svg class="close">
           <use href="./src/svg/symbol.svg#icon-close"></use>
         </svg>
         <div class="imgRound">
-           <img src="./src/images/temporary/pic.png" alt="" /></li> 
+          <img src="./src/images/temporary/pic.png" alt="" />
         </div>
 
         <ul class="modal-list modal-list__row">
@@ -155,7 +163,7 @@
               </li>
             </ul>
           </li>
-        </ul> -->
+        </ul>
       </div>
     </section>
 

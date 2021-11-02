@@ -14,15 +14,22 @@ import {
   DEFAULT_PLACE,
   DEFAULT_PRICE,
   DEFAULT_API_RESPONSE,
+  country,
+  chooseCountry,
 } from "./globalVAR.js"
 
 let page = 0
-let keyword = "Rock"
 let totalPages = 0
+let keyword = ""
+let countryCode = ""
 
 const setPage = (pageNumber) => (page = pageNumber)
-const setTotalPages = (allPages) => (totalPages = allPages)
+const setTotalPages = (allPages) => (totalPages = allPages - 1)
 const setKeyword = (formValue) => (keyword = formValue)
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find((key) => object[key] === value)
+}
 
 // form
 eventSearch.addEventListener("keyup", () => {
@@ -30,12 +37,65 @@ eventSearch.addEventListener("keyup", () => {
   l(`keyword: ${keyword}`)
   changePage(0)
 })
+
+const dropDown = ql(".drop-down")
+
+Object.values(country).forEach((curentCountry) => {
+  const lastItem = document.createElement("li")
+  const link = document.createElement("a")
+  link.href = "#start"
+
+  if (curentCountry != "") {
+    link.innerText = curentCountry
+    lastItem.append(link)
+    // l("lastItem")
+    // l(lastItem)
+    dropDown.append(lastItem)
+    lastItem.addEventListener(
+      "click",
+      () => {
+        countryCode =
+          getKeyByValue(country, curentCountry) ?? country["default"]
+        l(curentCountry + " " + countryCode)
+        l(curentCountry + " " + countryCode)
+        ql(".nav-button").innerText = curentCountry
+        ql(".nav-button").parentNode.parentNode.classList.toggle("closed")
+
+        changePage(0)
+        topFunction()
+      },
+      false
+    )
+  }
+})
+
+function topFunction() {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
+}
+
+// l(dropDown)
+
+ql(".nav-button").addEventListener(
+  "click",
+  (event) => {
+    ql(".nav-button").parentNode.parentNode.classList.toggle("closed")
+  },
+  false
+)
+
+// chooseCountry.addEventListener("keyup", () => {
+//   let countryName = chooseCountry.value
+//   countryCode = getKeyByValue(country, countryName) ?? country["default"]
+//   l(`countryCode ${countryCode}`)
+//   changePage(0)
+// })
+
 // form endz
 
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
-    // &countryCode=AU
+    `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
   )
     .then((pages) => {
       l("apiCALL")
