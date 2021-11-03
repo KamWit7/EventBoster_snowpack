@@ -19,7 +19,7 @@
     <section class="header">
       <div class="container">
         <ul class="header__list">
-          <li class="logo">
+          <li class="logo" >
             <svg><use href="./src/svg/symbol.svg#icon-logo" /></svg>
           </li>
           <li class="title"><h1>FIND BEST EVENTS AROUND THE WORLD</h1></li>
@@ -36,17 +36,25 @@
                   <use href="./src/svg/symbol.svg#icon-loop"></use>
                 </svg>
               </div>
-              <div class="serch__wrapper">
-                <input
-                  type="text"
-                  id="choose-country"
-                  placeholder="Choose country"
-                  maxlength="20"
-                />
-                <svg class="down-arrow">
-                  <use href="./src/svg/symbol.svg#icon-arrow"></use>
-                </svg>
+              <div class="serch__wrapper serch__wrapper--drop">
+                <ul class="drop-down closed" id="style-1">
+                  <li>
+                    <a href="#" id="start" class="nav-button">Choose country</a>
+                    <svg class="down-arrow">
+                      <use href="./src/svg/symbol.svg#icon-arrow"></use>
+                    </svg>
+                  </li>
+                  <!-- render in js -->
+                </ul>
               </div>
+
+              <!-- <input
+                type="text"
+                id="choose-country"
+                placeholder="Choose country"
+                maxlength="20"
+              />
+              -->
             </form>
           </li>
         </ul>
@@ -95,73 +103,10 @@
 
     <section class="modal backdrop is-hidden">
       <div class="wrapper">
-         <svg class="close">
-          <use href="./src/svg/symbol.svg#icon-close"></use>
-        </svg>
-        <div class="imgRound">
-           <img src="./src/images/temporary/pic.png" alt="" /></li> 
-        </div>
-<!--
-        <ul class="modal-list modal-list__row">
-          <li class="modal-list__img">
-            <img src="./src/images/temporary/pic.png" alt="" />
-          </li>
-          <li>
-            <ul class="modal-list">
-              <li class="modal-list__info">
-                <span class="modal-list__title">INFO</span>
-                <p class="modal-list__text modal-list__text-width">
-                  Atlas Weekend is the largest music festival in Ukraine. More
-                  than 200 artists will create a proper music festival
-                  atmosphere on 10 stages
-                </p>
-              </li>
-              <li class="modal-list__when">
-                <span class="modal-list__title">WHEN</span>
-                <p class="modal-list__text">2021-06-09 20:00 (Kyiv/Ukraine)</p>
-              </li>
-              <li class="modal-list__where">
-                <span class="modal-list__title">WHERE</span>
-                <p class="modal-list__text">Kyiv, Ukraine VDNH</p>
-              </li>
-              <li class="modal-list__who">
-                <span class="modal-list__title">WHO</span>
-                <p class="modal-list__text">The Black Eyed Peas</p>
-              </li>
-              <li class="modal-list__prices">
-                <span class="modal-list__title">PRICES</span>
-                <p
-                  class="
-                    modal-list__text
-                    modal-list__text-width
-                    modal-list__text--label
-                  "
-                >
-                  Standart 300-500 UAH
-                </p>
-                <button class="btn-buy">BUY TICKETS</button>
-                <p
-                  class="
-                    modal-list__text
-                    modal-list__text-width
-                    modal-list__text--label
-                  "
-                >
-                  VIP 1000-1500 UAH
-                </p>
-                <button class="btn-buy">BUY TICKETS</button>
-
-                <button class="btn-author">MORE FROM THIS AUTHOR</button>
-              </li>
-            </ul>
-          </li>
-        </ul> -->
+        <!-- render in js-->
       </div>
     </section>
 
-    <!-- <script type="module" src="./src/js/globalVAR.js"></script>
-    <script type="module" src="./src/js/gallery.js"></script>
-    <script type="module" src="./src/js/modal.js"></script> -->
     <script type="module" src="./src/js/pagination.js"></script>
   </body>
 </html>

@@ -4,7 +4,9 @@ export const renderGallery = (events) => {
   console.log(events);
   return events
     .then((apiInfo) => {
-      const markup = apiInfo
+      l("apiInfo")
+      l(apiInfo)
+      const markup = apiInfo //undf.map()
         .map((event) => {
           // console.log(event.id)
           return `<ul id= "${event.id}" class="event event--is-hidden">
