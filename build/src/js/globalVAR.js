@@ -8,13 +8,41 @@ const l = (s) => console.log(s)
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 const SIZE = 24
 
-const eventSerch = ql("#event-serch")
+const eventSearch = ql("#event-serch")
+const chooseCountry = ql("#choose-country")
 
 const pagesChildren = [...qla(".page")]
 
 const dotsEnd = ql(".page-dots")
 const dotsStart = ql(".page-dots--start")
 const pages = ql(".pages")
+
+// processedApiDate CONST
+const DEFAULT_PLACE = "No info :("
+const DEFAULT_PRICE = [
+  { type: "No ticket left", currency: "?", min: 0, max: 0 },
+]
+const DEFAULT_API_RESPONSE = [
+  {
+    images: [
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+      { ratio: "", url: "", width: "", height: "", fallback: "" },
+    ],
+    eventName: "no event name",
+    date: "no event date ",
+    time: "",
+    timezone: "",
+    place: "",
+
+    info: "",
+    ticketUrl: "",
+    price: [{ type: "", currency: "?", min: 0, max: 0 }],
+  },
+]
 // PAGINATION END
 
 // GALLERY
@@ -26,12 +54,103 @@ const wrapper = ql(".wrapper")
 const modal = ql(".modal")
 // MODAL END
 
+// form country
+
+const country = {
+  default: "",
+  US: "United States Of America",
+  AD: "Andorra",
+  AI: "Anguilla",
+  AR: "Argentina",
+  AU: "Australia",
+  AT: "Austria", // page 1 problem
+  AZ: "Azerbaijan",
+  BS: "Bahamas",
+  BH: "Bahrain",
+  BB: "Barbados",
+  BE: "Belgium",
+  BM: "Bermuda",
+  BR: "Brazil",
+  BG: "Bulgaria",
+  CA: "Canada",
+  CL: "Chile",
+  CN: "China",
+  CO: "Colombia",
+  CR: "Costa Rica",
+  HR: "Croatia",
+  CY: "Cyprus",
+  CZ: "Czech Republic",
+  DK: "Denmark",
+  DO: "Dominican Republic",
+  EC: "Ecuador",
+  EE: "Estonia",
+  FO: "Faroe Islands",
+  FI: "Finland",
+  FR: "France",
+  GE: "Georgia",
+  DE: "Germany",
+  GH: "Ghana",
+  GI: "Gibraltar",
+  GB: "Great Britain",
+  GR: "Greece",
+  HK: "Hong Kong",
+  HU: "Hungary",
+  IS: "Iceland",
+  IN: "India",
+  IE: "Ireland",
+  IL: "Israel",
+  IT: "Italy",
+  JM: "Jamaica",
+  JP: "Japan",
+  KR: "Korea, Republic of",
+  LV: "Latvia",
+  LB: "Lebanon",
+  LT: "Lithuania",
+  LU: "Luxembourg",
+  MY: "Malaysia",
+  MT: "Malta",
+  MX: "Mexico",
+  MC: "Monaco",
+  ME: "Montenegro",
+  MA: "Morocco",
+  NL: "Netherlands",
+  AN: "Netherlands Antilles",
+  NZ: "New Zealand",
+  ND: "Northern Ireland",
+  NO: "Norway",
+  PE: "Peru",
+  PL: "Poland",
+  PT: "Portugal",
+  RO: "Romania",
+  RU: "Russian Federation",
+  LC: "Saint Lucia",
+  SA: "Saudi Arabia",
+  RS: "Serbia",
+  SG: "Singapore",
+  SK: "Slovakia",
+  SI: "Slovenia",
+  ZA: "South Africa",
+  ES: "Spain",
+  SE: "Sweden",
+  CH: "Switzerland",
+  TW: "Taiwan",
+  TH: "Thailand",
+  TT: "Trinidad and Tobago",
+  TR: "Turkey",
+  UA: "Ukraine",
+  AE: "United Arab Emirates",
+  UY: "Uruguay",
+  VE: "Venezuela",
+}
+
+//
+
 export {
   API_KEY,
   SIZE,
   l,
   eventsContainer,
-  eventSerch,
+  eventSearch,
   pages,
   pagesChildren,
   dotsEnd,
@@ -40,4 +159,9 @@ export {
   modal,
   qla,
   ql,
+  DEFAULT_PLACE,
+  DEFAULT_PRICE,
+  DEFAULT_API_RESPONSE,
+  country,
+  chooseCountry,
 }
