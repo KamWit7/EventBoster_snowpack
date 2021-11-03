@@ -122,6 +122,8 @@ function processedApiDate(apiCall) {
 
       return apiResults._embedded.events.map((e) => {
         return {
+          authorId: e._embedded.venues[0].id,
+          id: e.id,
           images: e.images ?? "", // image array {10}
           eventName: e.name ?? "", // ivent name
           date: e.dates.start.localDate ?? "",
@@ -133,17 +135,14 @@ function processedApiDate(apiCall) {
               : DEFAULT_PLACE,
           info: e.info ?? "",
           ticketUrl: e.url ?? "",
-          id: e.id ?? "",
           price: e.priceRanges ?? DEFAULT_PRICE,
         }
       })
-      
     })
     .catch((er) => {
       l(`error in processedApiDate: ${er}`)
     })
 }
-
 
 const showEnd = (lastPage) => {
   dotsEnd.style.display = "none" // no ends bots
@@ -177,7 +176,6 @@ const setLastPageInPages = (totalPages) => {
   }
   return lastPage // no more then 29 pages
 }
-
 
 const changePage = (pageNumber) => {
   setPage(pageNumber)
@@ -227,7 +225,7 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
-
+    renderModal(processedApiDate(apiCall))
   })
 }
 
@@ -242,6 +240,7 @@ const pageClick = () => {
 
 renderGallery(processedApiDate(apiCall))
 renderModal(processedApiDate(apiCall))
+
 pageClick()
 focusOnCurentPage(1)
 

@@ -1,6 +1,7 @@
 ;`use script`
 
 import { renderGallery } from "./gallery.js"
+import { renderModal } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
@@ -121,6 +122,8 @@ function processedApiDate(apiCall) {
 
       return apiResults._embedded.events.map((e) => {
         return {
+          authorId: e._embedded.venues[0].id,
+          id: e.id,
           images: e.images ?? "", // image array {10}
           eventName: e.name ?? "", // ivent name
           date: e.dates.start.localDate ?? "",
@@ -222,6 +225,7 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
+    renderModal(processedApiDate(apiCall))
   })
 }
 
@@ -235,6 +239,8 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
+renderModal(processedApiDate(apiCall))
+
 pageClick()
 focusOnCurentPage(1)
 

@@ -4,8 +4,8 @@ export const renderGallery = (events) => {
   console.log(events);
   return events
     .then((apiInfo) => {
-      l("apiInfo")
-      l(apiInfo)
+      l("apiInfo");
+      l(apiInfo);
       const markup = apiInfo //undf.map()
         .map((event) => {
           // console.log(event.id)
@@ -56,31 +56,35 @@ export const renderGallery = (events) => {
       // pages.classList.remove("pages--is-hidden")
     });
 };
- export const renderModal = (events) => {
+export const renderModal = (events) => {
   return events
     .then((apiData) => {
       console.group(apiData);
       const markup = apiData
         .map((event) => {
-          return `<button class="close">X</button>
-         
-        <div class="imgRound" >
-           <img src="./src/images/temporary/pic.png" alt="" /></li> 
+          return `
+          <div class="div-modal" id="${event.id}" style="display:none">
+          <div class="imgRound">
+           <img src="${event.images[0].url}" alt="" style="border-radius:50%"/> 
         </div>
-          <ul id="${event.id}" class="modal-list modal-list__row" style="display:none">
+          <svg class="close">
+          <use href="./src/svg/symbol.svg#icon-close"></use>
+        </svg>
+        
+          <ul  class="modal-list modal-list__row" >
           <li class="modal-list__img">
-            <img src="${event.images[0].url}" alt="" width="200" height="200" style="border-radius:50px" />
+            <img src="${event.images[0].url}" alt="" width="200" height="200"  />
           </li>
           <li>
             <ul class="modal-list">
               <li class="modal-list__info">
-                <span class="modal-list__title">${event.eventName}</span>
+                <span class="modal-list__title">INFO</span>
                 <p class="modal-list__text modal-list__text-width">
                   ${event.info}
                 </p>
               </li>
               <li class="modal-list__when">
-                <span class="modal-list__title">WHEn</span>
+                <span class="modal-list__title">WHEN</span>
                 <p class="modal-list__text">${event.time} ${event.timezone}</p>
               </li>
               <li class="modal-list__where">
@@ -102,7 +106,7 @@ export const renderGallery = (events) => {
                 >
                   ${event.price[0].type}  ${event.price[0].min} ${event.price[0].max} ${event.price[0].currency} 
                 </p>
-                <button class="btn-buy">BUY TICKETS</button>
+                <a href="${event.ticketUrl}" target="_blank"><button class="btn-buy">BUY TICKETS</button></a>
                 <p
                   class="
                     modal-list__text
@@ -112,62 +116,52 @@ export const renderGallery = (events) => {
                 >
                   VIP 1000-1500 UAH   
                 </p>
+                
                 <button class="btn-buy">BUY TICKETS</button>
-
-                <button class="btn-author">MORE FROM THIS AUTHOR</button>
+<button id="${event.authorId}" class="btn-author">MORE FROM THIS AUTHOR</button>
+                
               </li>
             </ul>
           </li>
-        </ul> `
-      
+        </ul> 
+        </div>`;
         })
 
         .join("");
-      //console.log(wrapper)
+   
       wrapper.innerHTML = markup;
       return events;
     })
     .then((events) => {
       console.log(events);
-      //const evtapi = []
-      //evtapi.push(event)
-      // console.log(evtapi[0].id)
-const modal = ql('.modal')
-const closeEvt = ql('.close')
-//console.log(closeEvt)
-      const evenat = qla(".event");
-      console.log(evenat);
-      const modalId = qla(".modal-list");
 
-      evenat.forEach((eve) => {
+      const modal = ql(".modal");
+      const modalEvents = qla(".event");
+      const modalId = qla(".div-modal");
+      const closeEvt = qla(".close");
+      
+      modalEvents.forEach((eve) => {
         eve.addEventListener("click", (e) => {
+
           let evtVal = e.currentTarget.getAttribute("id");
-          console.log(evtVal);
-          
-          modal.classList.remove('is-hidden')
-          
+          modal.classList.remove("is-hidden");
           modalId.forEach((elm) => {
             if (elm.getAttribute("id") === e.currentTarget.getAttribute("id")) {
-              //console.log(elm.getAttribute('id'))
-              console.log("yes");
-              // console.log(e.target.getAttribute('id'))
-              //elm.target.style.display = "flex"
-              let val = elm.getAttribute("id");//
-              //val.style.display = "flex"
-              console.log(val)
-              let span = ql(`.modal .wrapper ul[id=${val}]`);
-              console.log(span)
-              span.style.display ="flex"
-              console.log(closeEvt)
-              closeEvt.addEventListener('click', () =>{
-                console.log('aa')
-                
+              let val = elm.getAttribute("id");
+              let span = ql(`.div-modal[id=${val}]`)
+              span.style.display = "flex";
+              closeEvt.forEach((btn) =>{
+                btn.addEventListener("click", () => {
+            modal.classList.add("is-hidden");
+            span.style.display = "none";
+          });
               })
+             
             }
-          }); 
+          });
+          
         });
       });
     });
-}; 
+};
 //renderModal(processedApiDate(apiCall))
- 
