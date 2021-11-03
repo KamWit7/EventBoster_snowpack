@@ -893,11 +893,9 @@ img {
   }
 }
 
-#event-serch:focus, #event-serch:hover,
+#event-serch:focus,
 #choose-country:focus,
-#choose-country:hover,
-.nav-button:focus,
-.nav-button:hover {
+.nav-button:focus {
   -webkit-box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
           box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
   -webkit-animation-name: puls-shadow;
@@ -1194,16 +1192,6 @@ img {
   font-weight: 400;
 }
 
-.nav-button {
-  display: block;
-  color: #939393;
-}
-
-.drop-down.closed {
-  overflow: hidden;
-  height: 40px;
-}
-
 .drop-down li {
   width: 100%;
   border-bottom: 3px solid #939393;
@@ -1217,6 +1205,16 @@ img {
   padding: 10px 40px;
 }
 
+.drop-down.closed {
+  overflow: hidden;
+  height: 40px;
+}
+
+.nav-button {
+  display: block;
+  color: #939393;
+}
+
 .down-arrow {
   position: absolute;
   width: 14px;
@@ -1225,7 +1223,7 @@ img {
   right: 30px;
 }
 
-#style-1::-webkit-scrollbar-track {
+#scrollbar-dark::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -1236,13 +1234,13 @@ img {
   margin-right: 2px;
 }
 
-#style-1::-webkit-scrollbar {
+#scrollbar-dark::-webkit-scrollbar {
   width: 7px;
   height: 7px;
   background-color: transparent;
 }
 
-#style-1::-webkit-scrollbar-thumb {
+#scrollbar-dark::-webkit-scrollbar-thumb {
   border-radius: 30px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1578,6 +1576,7 @@ img {
   text-decoration: underline;
 }
 
+
 .div-modal {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1588,6 +1587,15 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  
+}
+
+.footer__team a {
+  color: #dc56c5;
+}
+
+.footer__team a:focus, .footer__team a:hover {
+  color: #dc38c54d;
 }
 
 .modal {
@@ -1904,3 +1912,4 @@ img {
 .over {
   overflow: hidden;
 }
+/*# sourceMappingURL=main.css.map */

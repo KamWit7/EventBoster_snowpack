@@ -44,8 +44,7 @@
 #choose-country,
 .nav-button {
   // @extend %easy-transition;
-  &:focus,
-  &:hover {
+  &:focus {
     box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
     animation-name: puls-shadow;
     animation-duration: 300ms;
