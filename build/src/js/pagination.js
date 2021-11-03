@@ -1,5 +1,3 @@
-;`use script`
-
 import { renderGallery } from "./gallery.js"
 import { renderModal } from "./gallery.js"
 import {
@@ -11,35 +9,39 @@ import {
   dotsStart,
   pages,
   ql,
+  qla,
   eventSearch,
   DEFAULT_PLACE,
   DEFAULT_PRICE,
   DEFAULT_API_RESPONSE,
   country,
-  chooseCountry,
+  dropDown,
+  navButton,
 } from "./globalVAR.js"
 
 let page = 0
 let totalPages = 0
 let keyword = ""
 let countryCode = ""
+let idVen = ""
 
 const setPage = (pageNumber) => (page = pageNumber)
 const setTotalPages = (allPages) => (totalPages = allPages - 1)
 const setKeyword = (formValue) => (keyword = formValue)
-
-function getKeyByValue(object, value) {
-  return Object.keys(object).find((key) => object[key] === value)
-}
-
+const getKeyByValue = (object, value) =>
+  Object.keys(object).find((key) => object[key] === value)
+const closeChooseCountry = () =>
+  navButton.parentNode.parentNode.classList.toggle("closed")
+const resetIdVen = () => (idVen = "")
 // form
+navButton.addEventListener("click", closeChooseCountry, false)
+
 eventSearch.addEventListener("keyup", () => {
   setKeyword(eventSearch.value)
+  idVen = ""
   l(`keyword: ${keyword}`)
   changePage(0)
 })
-
-const dropDown = ql(".drop-down")
 
 Object.values(country).forEach((curentCountry) => {
   const lastItem = document.createElement("li")
@@ -49,8 +51,6 @@ Object.values(country).forEach((curentCountry) => {
   if (curentCountry != "") {
     link.innerText = curentCountry
     lastItem.append(link)
-    // l("lastItem")
-    // l(lastItem)
     dropDown.append(lastItem)
     lastItem.addEventListener(
       "click",
@@ -58,48 +58,24 @@ Object.values(country).forEach((curentCountry) => {
         countryCode =
           getKeyByValue(country, curentCountry) ?? country["default"]
         l(curentCountry + " " + countryCode)
-        l(curentCountry + " " + countryCode)
-        ql(".nav-button").innerText = curentCountry
-        ql(".nav-button").parentNode.parentNode.classList.toggle("closed")
-
+        navButton.innerText = curentCountry
+        closeChooseCountry()
         changePage(0)
-        topFunction()
       },
       false
     )
   }
 })
+// form end
 
-function topFunction() {
-  document.body.scrollTop = 0
-  document.documentElement.scrollTop = 0
-}
-
-// l(dropDown)
-
-ql(".nav-button").addEventListener(
-  "click",
-  (event) => {
-    ql(".nav-button").parentNode.parentNode.classList.toggle("closed")
-  },
-  false
-)
-
-// chooseCountry.addEventListener("keyup", () => {
-//   let countryName = chooseCountry.value
-//   countryCode = getKeyByValue(country, countryName) ?? country["default"]
-//   l(`countryCode ${countryCode}`)
-//   changePage(0)
-// })
-
-// form endz
-
+l(`idven ${idVen}.`)
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+    idVen === ""
+      ? `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+      : `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}&venueId=${idVen}`
   )
     .then((pages) => {
-      l("apiCALL")
       return pages.json()
     })
     .catch((error) => {
@@ -110,6 +86,7 @@ async function apiCall() {
 function processedApiDate(apiCall) {
   return apiCall()
     .then((apiResults) => {
+      l("apiResults")
       l(apiResults)
       if (!("_embedded" in apiResults)) {
         l("no _embedded in apiResults")
@@ -118,7 +95,6 @@ function processedApiDate(apiCall) {
       }
 
       setTotalPages(apiResults.page.totalPages)
-      l(`totalPages processedApiDate: ${totalPages}`)
 
       return apiResults._embedded.events.map((e) => {
         return {
@@ -128,10 +104,10 @@ function processedApiDate(apiCall) {
           eventName: e.name ?? "", // ivent name
           date: e.dates.start.localDate ?? "",
           time: e.dates.start.localTime ?? "",
-          timezone: e.dates.timezone ?? "", // data start
+          timezone: e.dates.timezone ?? "",
           place:
             "_embedded" in e
-              ? e._embedded.venues[0].name ?? DEFAULT_PLACE // .name ?
+              ? e._embedded.venues[0].name ?? DEFAULT_PLACE
               : DEFAULT_PLACE,
           info: e.info ?? "",
           ticketUrl: e.url ?? "",
@@ -183,9 +159,7 @@ const changePage = (pageNumber) => {
     l(`totalPages changePage ${totalPages}`)
     l(`pageNumber changePage ${pageNumber}`)
     let lastPage = setLastPageInPages(totalPages)
-
-    l(`totalPages setLastPageInPages ${setLastPageInPages(totalPages)}`)
-
+    l(`lastPage: ${lastPage}`)
     dotsEnd.style.display = "flex" // show end dots
 
     if (lastPage > 6) {
@@ -197,7 +171,6 @@ const changePage = (pageNumber) => {
       dotsEnd.style.display = "flex"
     }
 
-    l("lastPage: " + lastPage)
     if (lastPage < 6) {
       dotsStart.style.display = "none"
       dotsEnd.style.display = "none"
@@ -225,7 +198,8 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
-    renderModal(processedApiDate(apiCall))
+    const modal = renderModal(processedApiDate(apiCall))
+    authorEvents(modal)
   })
 }
 
@@ -239,10 +213,26 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
-renderModal(processedApiDate(apiCall))
-
+const modal = renderModal(processedApiDate(apiCall))
+authorEvents(modal)
 pageClick()
 focusOnCurentPage(1)
+
+function authorEvents(modal) {
+  modal.then(() => {
+    const btnAuthors = [...qla(".btn-author")]
+    const modal = ql(".modal")
+    btnAuthors.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        idVen = btn.id
+        modal.classList.add("is-hidden")
+        changePage(0)
+      })
+    })
+  })
+}
+
+// more from author
 
 //modalShows(processedApiDate(apiCall))
 
