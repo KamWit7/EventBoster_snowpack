@@ -1,6 +1,7 @@
 ;`use script`
 
 import { renderGallery } from "./gallery.js"
+import { renderModal } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
@@ -121,6 +122,22 @@ function processedApiDate(apiCall) {
 
       return apiResults._embedded.events.map((e) => {
         return {
+
+          images: e.images, // image array {10}
+          eventName: e.name, // ivent name
+          date: e.dates.start.localDate,
+          time: e.dates.start.localTime,
+          timezone: e.dates.timezone, // data start
+          place: e._embedded.venues[0].name,
+          info: e.info,
+          ticketUrl: e.url,
+          id: e.id ,
+         countryCode: e._embedded.venues[0].country.name,
+          price:
+            "priceRanges" in e
+              ? e.priceRanges
+              : [{ type: "No ticket left", currency: "?", min: 0, max: 0 }],
+
           images: e.images ?? "", // image array {10}
           eventName: e.name ?? "", // ivent name
           date: e.dates.start.localDate ?? "",
@@ -133,13 +150,16 @@ function processedApiDate(apiCall) {
           info: e.info ?? "",
           ticketUrl: e.url ?? "",
           price: e.priceRanges ?? DEFAULT_PRICE,
+
         }
       })
+      
     })
     .catch((er) => {
       l(`error in processedApiDate: ${er}`)
     })
 }
+
 
 const showEnd = (lastPage) => {
   dotsEnd.style.display = "none" // no ends bots
@@ -174,8 +194,14 @@ const setLastPageInPages = (totalPages) => {
   return lastPage // no more then 29 pages
 }
 
+
+const changePage = (nr) => {
+  setPage(nr)
+  
+
 const changePage = (pageNumber) => {
   setPage(pageNumber)
+
   renderGallery(processedApiDate(apiCall)).then(() => {
     l(`totalPages changePage ${totalPages}`)
     l(`pageNumber changePage ${pageNumber}`)
@@ -221,7 +247,12 @@ const changePage = (pageNumber) => {
     }
     // reload site
     pages.classList.add("pages--is-hidden")
+
+    focusOnCurentPage(number)
+    renderModal(processedApiDate(apiCall))
+
     focusOnCurentPage(pageNumber)
+
   })
 }
 
@@ -235,6 +266,7 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
+renderModal(processedApiDate(apiCall))
 pageClick()
 focusOnCurentPage(1)
 

@@ -1603,6 +1603,8 @@ img {
 }
 
 .modal .wrapper .imgRound {
+  opacity: 0;
+  overflow: hidden;
   width: 102px;
   height: 102px;
   margin: 75px auto 18px;
@@ -1894,4 +1896,3 @@ img {
 .over {
   overflow: hidden;
 }
-/*# sourceMappingURL=main.css.map */

@@ -1,6 +1,7 @@
 ;`use script`
 
 import { renderGallery } from "./gallery.js"
+import { renderModal } from "./gallery.js"
 import {
   API_KEY,
   SIZE,
@@ -132,14 +133,17 @@ function processedApiDate(apiCall) {
               : DEFAULT_PLACE,
           info: e.info ?? "",
           ticketUrl: e.url ?? "",
+          id: e.id ?? "",
           price: e.priceRanges ?? DEFAULT_PRICE,
         }
       })
+      
     })
     .catch((er) => {
       l(`error in processedApiDate: ${er}`)
     })
 }
+
 
 const showEnd = (lastPage) => {
   dotsEnd.style.display = "none" // no ends bots
@@ -173,6 +177,7 @@ const setLastPageInPages = (totalPages) => {
   }
   return lastPage // no more then 29 pages
 }
+
 
 const changePage = (pageNumber) => {
   setPage(pageNumber)
@@ -222,6 +227,7 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
+
   })
 }
 
@@ -235,6 +241,7 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
+renderModal(processedApiDate(apiCall))
 pageClick()
 focusOnCurentPage(1)
 
