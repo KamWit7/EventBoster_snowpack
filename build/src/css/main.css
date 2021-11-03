@@ -893,11 +893,9 @@ img {
   }
 }
 
-#event-serch:focus, #event-serch:hover,
+#event-serch:focus,
 #choose-country:focus,
-#choose-country:hover,
-.nav-button:focus,
-.nav-button:hover {
+.nav-button:focus {
   -webkit-box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
           box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
   -webkit-animation-name: puls-shadow;
@@ -1194,16 +1192,6 @@ img {
   font-weight: 400;
 }
 
-.nav-button {
-  display: block;
-  color: #939393;
-}
-
-.drop-down.closed {
-  overflow: hidden;
-  height: 40px;
-}
-
 .drop-down li {
   width: 100%;
   border-bottom: 3px solid #939393;
@@ -1217,6 +1205,16 @@ img {
   padding: 10px 40px;
 }
 
+.drop-down.closed {
+  overflow: hidden;
+  height: 40px;
+}
+
+.nav-button {
+  display: block;
+  color: #939393;
+}
+
 .down-arrow {
   position: absolute;
   width: 14px;
@@ -1225,7 +1223,7 @@ img {
   right: 30px;
 }
 
-#style-1::-webkit-scrollbar-track {
+#scrollbar-dark::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -1236,13 +1234,13 @@ img {
   margin-right: 2px;
 }
 
-#style-1::-webkit-scrollbar {
+#scrollbar-dark::-webkit-scrollbar {
   width: 7px;
   height: 7px;
   background-color: transparent;
 }
 
-#style-1::-webkit-scrollbar-thumb {
+#scrollbar-dark::-webkit-scrollbar-thumb {
   border-radius: 30px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1578,16 +1576,26 @@ img {
   text-decoration: underline;
 }
 
+.footer__team a {
+  color: #dc56c5;
+}
+
+.footer__team a:focus, .footer__team a:hover {
+  color: #dc38c54d;
+}
+
 .div-modal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .modal {
@@ -1610,57 +1618,50 @@ img {
 .modal .wrapper .close {
   position: absolute;
   right: 25px;
-  top: 25px;
+  top: 5px;
   width: 17px;
   height: 17px;
 }
 
-.modal .wrapper .imgRound {
-  opacity: 0;
-  overflow: hidden;
-  width: 102px;
-  height: 102px;
-  margin: 75px auto 18px;
-  background-image: url("./../images/temporary/pic.png");
-  background-position: 50% 50%;
-  border-radius: 50% 50%;
+.modal .wrapper .imgRound img {
+  width: 100px;
+  height: 100px;
 }
 
 @media screen and (min-width: 768px) {
-  .modal .wrapper .imgRound {
-    width: 70px;
-    height: 70px;
-    margin: 28px auto 43px;
+  .modal .wrapper .imgRound img {
+    width: 110px;
+    height: 110px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .modal .wrapper .imgRound {
+  .modal .wrapper .imgRound img {
     width: 132px;
     height: 132px;
-    margin: 62px auto 41px;
   }
 }
 
 .modal .wrapper {
   width: 272px;
-  height: 915px;
-  border-radius: 150px 0px;
+  height: 100vh;
+  border-radius: 150px 0px 150px 0px;
   background-color: #fff2fd;
 }
 
 @media screen and (min-width: 768px) {
   .modal .wrapper {
     width: 595px;
-    height: 831px;
+    height: 100vh;
     border-radius: 300px 0px;
+    padding-top: 30px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .modal .wrapper {
     width: 930px;
-    height: 1023px;
+    height: 100vh;
   }
 }
 
@@ -1715,15 +1716,24 @@ img {
     display: block;
     width: 233px;
     height: 416px;
-    margin: 0 30px 0 50px;
+    padding-right: 20px;
+    padding-top: 50px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .modal-list__img {
-    width: 360px;
-    height: 641px;
+    width: 300px;
+    height: 500px;
     margin: 0 60px 0 30px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-right: 0;
+    padding-top: 0;
   }
 }
 
@@ -1746,14 +1756,17 @@ img {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.25;
-  margin: 5px 0 10px 0;
+  margin: 8px 0;
+  max-height: 82px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 1280px) {
   .modal-list__text {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.22;
-    margin: 7px 0 20px 0;
+    max-height: 70px;
+    overflow: hidden;
   }
 }
 
@@ -1768,7 +1781,7 @@ img {
 }
 
 .modal-list__text--label::before {
-  content: '';
+  content: "";
   display: inline-block;
   background: url("./../images/modal/ticket.png");
   width: 24px;
@@ -1791,7 +1804,6 @@ img {
   cursor: pointer;
   width: 145px;
   height: 40px;
-  margin-bottom: 20px;
   border-radius: 5px;
   border-style: none;
 }

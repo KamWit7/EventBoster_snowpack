@@ -1,5 +1,5 @@
 import { renderGallery } from "./gallery.js"
-import { renderModal } from "./gallery.js"
+import { renderModal } from "./modal.js"
 import {
   API_KEY,
   SIZE,
@@ -103,10 +103,13 @@ function processedApiDate(apiCall) {
             "_embedded" in e
               ? e._embedded.venues[0].name ?? DEFAULT_PLACE
               : DEFAULT_PLACE,
-          info: e.info ?? "",
+          info:e.info ?? "",
           ticketUrl: e.url ?? "",
-          price: e.priceRanges ?? DEFAULT_PRICE,
+          price:e.priceRanges ?? DEFAULT_PRICE,
+        
+        
         }
+        
       })
     })
     .catch((er) => {

@@ -7,19 +7,21 @@ const l = (s) => console.log(s)
 // PAGINATION
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 const SIZE = 24
-
 const eventSearch = ql("#event-serch")
 const chooseCountry = ql("#choose-country")
-
+const dropDown = ql(".drop-down")
 const pagesChildren = [...qla(".page")]
-
 const dotsEnd = ql(".page-dots")
 const dotsStart = ql(".page-dots--start")
 const pages = ql(".pages")
+const navButton = ql(".nav-button")
 
 // processedApiDate CONST
 const DEFAULT_PLACE = "No event info"
 const DEFAULT_PRICE = [
+  { type: "Go to the website to check", currency: "", min: "", max: "" },
+]
+const DEFAULT_PRICE1 = [
   { type: "Go to the website to check", currency: "", min: "", max: "" },
 ]
 const DEFAULT_API_RESPONSE = [
@@ -62,11 +64,11 @@ const wrapper = ql(".wrapper")
 const modal = ql(".modal")
 // MODAL END
 
-// form country
+// FORM COUNTRY/SERCH
 
 const country = {
   default: "",
-  US: "United States Of America",
+  US: "America",
   AD: "Andorra",
   AI: "Anguilla",
   AR: "Argentina",
@@ -151,7 +153,7 @@ const country = {
   VE: "Venezuela",
 }
 
-//
+// FORM COUNTRY/SERCH END
 
 export {
   API_KEY,
@@ -169,7 +171,10 @@ export {
   ql,
   DEFAULT_PLACE,
   DEFAULT_PRICE,
+  DEFAULT_PRICE1,
   DEFAULT_API_RESPONSE,
   country,
   chooseCountry,
+  dropDown,
+  navButton,
 }
