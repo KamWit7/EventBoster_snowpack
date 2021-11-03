@@ -9,6 +9,7 @@ import {
   dotsStart,
   pages,
   ql,
+  qla,
   eventSearch,
   DEFAULT_PLACE,
   DEFAULT_PRICE,
@@ -22,6 +23,7 @@ let page = 0
 let totalPages = 0
 let keyword = ""
 let countryCode = ""
+let idVen = ""
 
 const setPage = (pageNumber) => (page = pageNumber)
 const setTotalPages = (allPages) => (totalPages = allPages - 1)
@@ -31,11 +33,16 @@ const getKeyByValue = (object, value) =>
 const closeChooseCountry = () =>
   navButton.parentNode.parentNode.classList.toggle("closed")
 
+
+
+const resetIdVen = () => (idVen = "")
+
 // form
 navButton.addEventListener("click", closeChooseCountry, false)
 
 eventSearch.addEventListener("keyup", () => {
   setKeyword(eventSearch.value)
+  idVen = ""
   l(`keyword: ${keyword}`)
   changePage(0)
 })
@@ -65,9 +72,14 @@ Object.values(country).forEach((curentCountry) => {
 })
 // form end
 
+
+l(`idven ${idVen}.`)
+
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+    idVen === ""
+      ? `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
+      : `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}&venueId=${idVen}`
   )
     .then((pages) => {
       return pages.json()
@@ -195,7 +207,8 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
-    renderModal(processedApiDate(apiCall))
+    const modal = renderModal(processedApiDate(apiCall))
+    authorEvents(modal)
   })
 }
 
@@ -209,9 +222,30 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
+
 renderModal(processedApiDate(apiCall))
+
+const modal = renderModal(processedApiDate(apiCall))
+authorEvents(modal)
+
 pageClick()
 focusOnCurentPage(1)
+
+function authorEvents(modal) {
+  modal.then(() => {
+    const btnAuthors = [...qla(".btn-author")]
+    const modal = ql(".modal")
+    btnAuthors.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        idVen = btn.id
+        modal.classList.add("is-hidden")
+        changePage(0)
+      })
+    })
+  })
+}
+
+// more from author
 
 //modalShows(processedApiDate(apiCall))
 
