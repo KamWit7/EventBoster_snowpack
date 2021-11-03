@@ -19,7 +19,7 @@ const navButton = ql(".nav-button")
 // processedApiDate CONST
 const DEFAULT_PLACE = "No event info"
 const DEFAULT_PRICE = [
-  { type: "No ticket left", currency: "?", min: 0, max: 0 },
+  { type: "Go to the website to check", currency: "", min: "", max: "" },
 ]
 const DEFAULT_API_RESPONSE = [
   {
