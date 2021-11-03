@@ -36,5 +36,14 @@
 
   &__team {
     text-decoration: underline;
+
+    & a {
+      color: getColor(font-main-color);
+
+      &:focus,
+      &:hover {
+        color: getColor(font-main-color-transparent);
+      }
+    }
   }
 }
