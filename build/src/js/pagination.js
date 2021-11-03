@@ -32,7 +32,7 @@ eventSerch.addEventListener("keyup", () => {
 
 async function apiCall() {
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}&countryCode=FR`
+    `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyword}&apikey=${API_KEY}&size=${SIZE}&page=${page}`
   )
     .then((pages) => {
       l("apiCALL")

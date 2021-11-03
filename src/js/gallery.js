@@ -60,10 +60,8 @@ export const renderGallery = (events) => {
       console.group(apiData);
       const markup = apiData
         .map((event) => {
-          return `
-          <svg class="close">
-          <use href="./src/svg/symbol.svg#icon-close"></use>
-        </svg>
+          return `<button class="close">X</button>
+         
         <div class="imgRound" >
            <img src="./src/images/temporary/pic.png" alt="" /></li> 
         </div>
@@ -134,7 +132,7 @@ export const renderGallery = (events) => {
       // console.log(evtapi[0].id)
 const modal = ql('.modal')
 const closeEvt = ql('.close')
-console.log(closeEvt)
+//console.log(closeEvt)
       const evenat = qla(".event");
       console.log(evenat);
       const modalId = qla(".modal-list");
