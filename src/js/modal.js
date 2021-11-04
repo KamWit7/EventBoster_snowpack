@@ -99,13 +99,21 @@ export const renderModal = (events) => {
               let val = elm.getAttribute("id");
               let span = ql(`.div-modal[id=${val}]`);
               span.style.display = "flex";
-              closeEvt.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                  modal.classList.add("is-hidden");
+              
+              modal.addEventListener('click', (event) =>{
+                if (
+                  event.target.matches(".close") ||
+                  !event.target.closest(".wrapper")
+                ) {
+                  closeModal()
+                }
+              false
+              })
+            const closeModal = () =>{
+                modal.classList.add("is-hidden");
                   span.style.display = "none";
                   const body = ql("body").classList.remove("over");
-                });
-              });
+              }
             }
           });
         });
