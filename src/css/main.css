@@ -1662,6 +1662,7 @@ img {
   .modal .wrapper {
     width: 930px;
     height: 100vh;
+    padding-top: 0;
   }
 }
 
@@ -1690,6 +1691,7 @@ img {
         -ms-flex-align: start;
             align-items: flex-start;
     text-align: start;
+    margin-left: 20px;
   }
 }
 
@@ -1717,7 +1719,7 @@ img {
     width: 233px;
     height: 416px;
     padding-right: 20px;
-    padding-top: 50px;
+    margin-left: 20px;
   }
 }
 
@@ -1857,15 +1859,16 @@ img {
 
 @media screen and (min-width: 768px) {
   .modal-list .btn-author {
-    bottom: 56px;
-    left: 170px;
+    bottom: -10px;
+    left: -170px;
+    position: relative;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .modal-list .btn-author {
-    bottom: 62px;
-    left: 337px;
+    bottom: -50px;
+    left: -250px;
   }
 }
 

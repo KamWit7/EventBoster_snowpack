@@ -229,6 +229,7 @@ function authorEvents(modal) {
       btn.addEventListener("click", () => {
         idVen = btn.id
         modal.classList.add("is-hidden")
+        const body = ql("body").classList.remove("over");
         changePage(0)
       })
     })

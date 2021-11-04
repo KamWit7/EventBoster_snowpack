@@ -32,11 +32,7 @@ const getKeyByValue = (object, value) =>
   Object.keys(object).find((key) => object[key] === value)
 const closeChooseCountry = () =>
   navButton.parentNode.parentNode.classList.toggle("closed")
-
-
-
 const resetIdVen = () => (idVen = "")
-
 // form
 navButton.addEventListener("click", closeChooseCountry, false)
 
@@ -72,9 +68,7 @@ Object.values(country).forEach((curentCountry) => {
 })
 // form end
 
-
 l(`idven ${idVen}.`)
-
 async function apiCall() {
   return fetch(
     idVen === ""
@@ -222,12 +216,8 @@ const pageClick = () => {
 }
 
 renderGallery(processedApiDate(apiCall))
-
-renderModal(processedApiDate(apiCall))
-
 const modal = renderModal(processedApiDate(apiCall))
 authorEvents(modal)
-
 pageClick()
 focusOnCurentPage(1)
 
@@ -239,6 +229,7 @@ function authorEvents(modal) {
       btn.addEventListener("click", () => {
         idVen = btn.id
         modal.classList.add("is-hidden")
+        const body = ql("body").classList.remove("over");
         changePage(0)
       })
     })
