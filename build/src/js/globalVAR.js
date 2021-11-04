@@ -21,6 +21,9 @@ const DEFAULT_PLACE = "No event info"
 const DEFAULT_PRICE = [
   { type: "Go to the website to check", currency: "", min: "", max: "" },
 ]
+const DEFAULT_PRICE1 = [
+  { type: "Go to the website to check", currency: "", min: "", max: "" },
+]
 const DEFAULT_API_RESPONSE = [
   {
     images: [
@@ -168,6 +171,7 @@ export {
   ql,
   DEFAULT_PLACE,
   DEFAULT_PRICE,
+  DEFAULT_PRICE1,
   DEFAULT_API_RESPONSE,
   country,
   chooseCountry,
