@@ -16,16 +16,10 @@ const dotsStart = ql(".page-dots--start")
 const pages = ql(".pages")
 const navButton = ql(".nav-button")
 
-// processedApiDate CONST
-const DEFAULT_PLACE = "No event info"
-const DEFAULT_PRICE = [
-  { type: "Go to the website to check", currency: "", min: "", max: "" },
-]
-const DEFAULT_PRICE1 = [
-  { type: "Go to the website to check", currency: "", min: "", max: "" },
-]
+
 const DEFAULT_API_RESPONSE = [
   {
+    authorId: "",
     images: [
       {
         ratio: "",
@@ -41,16 +35,33 @@ const DEFAULT_API_RESPONSE = [
         height: "",
         fallback: "",
       },
+      {
+        ratio: "",
+        url: "https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png",
+        width: "",
+        height: "",
+        fallback: "",
+      },
+      {
+        ratio: "",
+        url: "https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png",
+        width: "",
+        height: "",
+        fallback: "",
+      },
     ],
+    id: "a",
     eventName: "No event name",
     date: "No event date ",
     time: "No Event time",
     timezone: "No Event timezone",
-    place: DEFAULT_PLACE,
+    place: "No event place",
 
     info: "No Event info",
     ticketUrl: "No Event url",
-    price: DEFAULT_PRICE,
+    price: [
+      { type: "Go to the website to check", currency: "", min: "", max: "" },
+    ],
   },
 ]
 // PAGINATION END
@@ -169,9 +180,6 @@ export {
   modal,
   qla,
   ql,
-  DEFAULT_PLACE,
-  DEFAULT_PRICE,
-  DEFAULT_PRICE1,
   DEFAULT_API_RESPONSE,
   country,
   chooseCountry,

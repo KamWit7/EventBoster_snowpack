@@ -6,12 +6,17 @@ import {
   l,
   wrapper,
   modal,
-} from "./globalVAR.js";
+} from "./globalVAR.js"
 
 export const renderModal = (events) => {
+  // if()
+
   return events
     .then((apiData) => {
-      console.group(apiData);
+      // console.group(apiData)
+      
+      l("apiData modal")
+      l(apiData)
       const markup = apiData
         .map((event) => {
           return `
@@ -70,53 +75,52 @@ export const renderModal = (events) => {
                 </p>
                 
                 <a href="${event.ticketUrl}" target="_blank"><button class="btn-buy">BUY TICKETS</button></a>
-<button id="${event.authorId}" class="btn-author">MORE FROM THIS AUTHOR</button>
+                <button id="${event.authorId}" class="btn-author">MORE FROM THIS AUTHOR</button>
                 
               </li>
             </ul>
           </li>
         </ul> 
-        </div>`;
+        </div>`
         })
 
-        .join("");
+        .join("")
 
-      wrapper.innerHTML = markup;
-      return events;
+      wrapper.innerHTML = markup
+      return events
     })
     .then((events) => {
-    
-      const modalEvents = qla(".event");
-      const modalId = qla(".div-modal");
-      const closeEvt = qla(".close");
+      const modalEvents = qla(".event")
+      const modalId = qla(".div-modal")
+      const closeEvt = qla(".close")
 
       modalEvents.forEach((eve) => {
         eve.addEventListener("click", (e) => {
-          const body = ql("body").classList.add("over");
-          modal.classList.remove("is-hidden");
+          const body = ql("body").classList.add("over")
+          modal.classList.remove("is-hidden")
           modalId.forEach((elm) => {
             if (elm.getAttribute("id") === e.currentTarget.getAttribute("id")) {
-              let val = elm.getAttribute("id");
-              let span = ql(`.div-modal[id=${val}]`);
-              span.style.display = "flex";
-              
-              modal.addEventListener('click', (event) =>{
+              let val = elm.getAttribute("id")
+              let span = ql(`.div-modal[id=${val}]`)
+              span.style.display = "flex"
+
+              modal.addEventListener("click", (event) => {
                 if (
                   event.target.matches(".close") ||
                   !event.target.closest(".wrapper")
                 ) {
                   closeModal()
                 }
-              false
+                false
               })
-            const closeModal = () =>{
-                modal.classList.add("is-hidden");
-                  span.style.display = "none";
-                  const body = ql("body").classList.remove("over");
+              const closeModal = () => {
+                modal.classList.add("is-hidden")
+                span.style.display = "none"
+                const body = ql("body").classList.remove("over")
               }
             }
-          });
-        });
-      });
-    });
-};
+          })
+        })
+      })
+    })
+}

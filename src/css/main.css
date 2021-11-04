@@ -924,7 +924,8 @@ img {
 
 .neon-title {
   color: #dc56c5;
-  text-shadow: 0 0 7px #dc56c5, 0 0 10px #dc56c5, 0 0 21px #dc56c5, 0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
+  color: #f1dcee;
+  text-shadow: 0 0 7px #dc56c6b7, 0 0 10px #dc56c5, 0 0 21px #dc56c5, 0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
 }
 
 .header {
@@ -1745,6 +1746,10 @@ img {
   }
 }
 
+.modal-list__info {
+  margin-top: 7.8px;
+}
+
 .modal-list__title {
   font-weight: 600;
   font-size: 20px;
@@ -1856,6 +1861,7 @@ img {
   cursor: pointer;
   width: 230px;
   height: 40px;
+  margin-top: 25px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border-radius: 5px;
@@ -1925,3 +1931,4 @@ img {
 .over {
   overflow: hidden;
 }
+/*# sourceMappingURL=main.css.map */

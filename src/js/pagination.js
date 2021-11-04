@@ -11,8 +11,6 @@ import {
   ql,
   qla,
   eventSearch,
-  DEFAULT_PLACE,
-  DEFAULT_PRICE,
   DEFAULT_API_RESPONSE,
   country,
   dropDown,
@@ -32,7 +30,6 @@ const getKeyByValue = (object, value) =>
   Object.keys(object).find((key) => object[key] === value)
 const closeChooseCountry = () =>
   navButton.parentNode.parentNode.classList.toggle("closed")
-const resetIdVen = () => (idVen = "")
 // form
 navButton.addEventListener("click", closeChooseCountry, false)
 
@@ -57,7 +54,7 @@ Object.values(country).forEach((curentCountry) => {
       () => {
         countryCode =
           getKeyByValue(country, curentCountry) ?? country["default"]
-        l(curentCountry + " " + countryCode)
+        l(`Country ${curentCountry} ${countryCode}`)
         navButton.innerText = curentCountry
         closeChooseCountry()
         changePage(0)
@@ -68,7 +65,6 @@ Object.values(country).forEach((curentCountry) => {
 })
 // form end
 
-l(`idven ${idVen}.`)
 async function apiCall() {
   return fetch(
     idVen === ""
@@ -86,8 +82,8 @@ async function apiCall() {
 function processedApiDate(apiCall) {
   return apiCall()
     .then((apiResults) => {
-      l("apiResults")
-      l(apiResults)
+      // l("apiResults")
+      // l(apiResults)
       if (!("_embedded" in apiResults)) {
         l("no _embedded in apiResults")
         setTotalPages(1)
@@ -95,27 +91,41 @@ function processedApiDate(apiCall) {
       }
 
       setTotalPages(apiResults.page.totalPages)
+      const {
+        authorId: DEFAULT_AUTHOR_ID,
+        images: DEFAULT_IMG,
+        id: DEFAULT_ID,
+        eventName: DEFAULT_EVENT_NAME,
+        date: DEFAULT_DATE,
+        time: DEFAULT_TIME,
+        timezone: DEFAULT_TIMEZONE,
+        place: DEFAULT_PLACE,
+
+        info: DEFAULT_INFO,
+        ticketUrl: DEFAULT_URL,
+        price: DEFAULT_PRICE,
+      } = DEFAULT_API_RESPONSE[0]
 
       return apiResults._embedded.events.map((e) => {
         return {
-          authorId: e._embedded.venues[0].id,
-          id: e.id,
-          images: e.images ?? "", // image array {10}
-          eventName: e.name ?? "", // ivent name
-          date: e.dates.start.localDate ?? "",
-          time: e.dates.start.localTime ?? "",
-          timezone: e.dates.timezone ?? "",
+          authorId:
+            "_embedded" in e
+              ? e._embedded.venues[0].id ?? DEFAULT_AUTHOR_ID
+              : DEFAULT_AUTHOR_ID,
+          id: `a${e.id}` ?? DEFAULT_ID,
+          images: e.images ?? DEFAULT_IMG,
+          eventName: e.name ?? DEFAULT_EVENT_NAME,
+          date: e.dates.start.localDate ?? DEFAULT_DATE,
+          time: e.dates.start.localTime ?? DEFAULT_TIME,
+          timezone: e.dates.timezone ?? DEFAULT_TIMEZONE,
           place:
             "_embedded" in e
               ? e._embedded.venues[0].name ?? DEFAULT_PLACE
               : DEFAULT_PLACE,
-          info:e.info ?? "",
-          ticketUrl: e.url ?? "",
-          price:e.priceRanges ?? DEFAULT_PRICE,
-        
-        
+          info: e.info ?? DEFAULT_INFO,
+          ticketUrl: e.url ?? DEFAULT_URL,
+          price: e.priceRanges ?? DEFAULT_PRICE,
         }
-        
       })
     })
     .catch((er) => {
@@ -159,10 +169,10 @@ const setLastPageInPages = (totalPages) => {
 const changePage = (pageNumber) => {
   setPage(pageNumber)
   renderGallery(processedApiDate(apiCall)).then(() => {
-    l(`totalPages changePage ${totalPages}`)
-    l(`pageNumber changePage ${pageNumber}`)
+    // l(`totalPages changePage ${totalPages}`)
+    // l(`pageNumber changePage ${pageNumber}`)
     let lastPage = setLastPageInPages(totalPages)
-    l(`lastPage: ${lastPage}`)
+    // l(`lastPage: ${lastPage}`)
     dotsEnd.style.display = "flex" // show end dots
 
     if (lastPage > 6) {
@@ -202,6 +212,7 @@ const changePage = (pageNumber) => {
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
     const modal = renderModal(processedApiDate(apiCall))
+    l("modal" + modal)
     authorEvents(modal)
   })
 }
@@ -215,12 +226,6 @@ const pageClick = () => {
   })
 }
 
-renderGallery(processedApiDate(apiCall))
-const modal = renderModal(processedApiDate(apiCall))
-authorEvents(modal)
-pageClick()
-focusOnCurentPage(1)
-
 function authorEvents(modal) {
   modal.then(() => {
     const btnAuthors = [...qla(".btn-author")]
@@ -228,13 +233,20 @@ function authorEvents(modal) {
     btnAuthors.forEach((btn) => {
       btn.addEventListener("click", () => {
         idVen = btn.id
+        l("idVen " + idVen)
         modal.classList.add("is-hidden")
-        const body = ql("body").classList.remove("over");
+        const body = ql("body").classList.remove("over")
         changePage(0)
       })
     })
   })
 }
+
+renderGallery(processedApiDate(apiCall))
+const modals = renderModal(processedApiDate(apiCall))
+authorEvents(modals)
+pageClick()
+focusOnCurentPage(1)
 
 // more from author
 
