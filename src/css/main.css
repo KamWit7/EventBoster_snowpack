@@ -922,6 +922,11 @@ img {
           animation-duration: 750ms;
 }
 
+.neon-title {
+  color: #dc56c5;
+  text-shadow: 0 0 7px #dc56c5, 0 0 10px #dc56c5, 0 0 21px #dc56c5, 0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
+}
+
 .header {
   background: -webkit-gradient(linear, left top, right top, from(#0b0b0b73), color-stop(50%, #0b0b0b80)), url("./../images/header/bg-band.png");
   background: linear-gradient(90deg, #0b0b0b73 0%, #0b0b0b80 50%), url("./../images/header/bg-band.png");
@@ -1632,6 +1637,7 @@ img {
   .modal .wrapper .imgRound img {
     width: 110px;
     height: 110px;
+    padding-bottom: 10px;
   }
 }
 
