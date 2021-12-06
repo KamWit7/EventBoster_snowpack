@@ -1,12 +1,9 @@
 @import "./../utils/keyframes";
 @import "./../utils/variable";
 
-
-
 .loading-box {
   width: 152px;
   height: 152px;
-  // display: inline-block;
   overflow: hidden;
   margin: 15px 0 35px;
   background: rgba(255, 255, 255, 0);
@@ -40,3 +37,4 @@
     }
   }
 }
+

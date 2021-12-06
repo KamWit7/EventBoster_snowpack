@@ -8,14 +8,13 @@ const l = (s) => console.log(s)
 const API_KEY = "n3gAEgr8rYbG16Dkj0pCwG8eHAa4A1eM"
 const SIZE = 24
 const eventSearch = ql("#event-serch")
-const chooseCountry = ql("#choose-country")
+const choosecountrys = ql("#choose-countrys")
 const dropDown = ql(".drop-down")
 const pagesChildren = [...qla(".page")]
 const dotsEnd = ql(".page-dots")
 const dotsStart = ql(".page-dots--start")
 const pages = ql(".pages")
 const navButton = ql(".nav-button")
-
 
 const DEFAULT_API_RESPONSE = [
   {
@@ -75,9 +74,9 @@ const wrapper = ql(".wrapper")
 const modal = ql(".modal")
 // MODAL END
 
-// FORM COUNTRY/SERCH
+// FORM countrys/SERCH
 
-const country = {
+const countrys = {
   default: "",
   US: "America",
   AD: "Andorra",
@@ -164,7 +163,7 @@ const country = {
   VE: "Venezuela",
 }
 
-// FORM COUNTRY/SERCH END
+// FORM countryss/SERCH END
 
 export {
   API_KEY,
@@ -181,8 +180,8 @@ export {
   qla,
   ql,
   DEFAULT_API_RESPONSE,
-  country,
-  chooseCountry,
+  countrys,
+  choosecountrys,
   dropDown,
   navButton,
 }

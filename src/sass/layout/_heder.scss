@@ -1,18 +1,10 @@
 @import "../utils/variable";
-.neon-title{
+.neon-title {
   color: #dc56c5;
   color: #f1dcee;
 
-  text-shadow:
-    0 0 7px #dc56c6b7,
-    0 0 10px #dc56c5,
-    0 0 21px #dc56c5,
-    0 0 42px #dc5699,
-    0 0 82px #dc5699,
-    0 0 92px #dc1099,
-    0 0 110px #dc1099,
-   
-  
+  text-shadow: 0 0 7px #dc56c6b7, 0 0 10px #dc56c5, 0 0 21px #dc56c5,
+    0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
 }
 
 .header {
@@ -215,7 +207,7 @@
   transition: height 0.3s ease;
 
   width: 270px;
-  height: 170px;
+  height: 260px;
   margin-top: 25px;
 
   background: rgba(255, 255, 255, 0.2);
@@ -240,9 +232,9 @@
   }
 
   &.closed {
-  overflow: hidden;
-  height: 40px;
-}
+    overflow: hidden;
+    height: 40px;
+  }
 }
 
 .nav-button {

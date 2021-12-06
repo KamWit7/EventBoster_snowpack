@@ -925,7 +925,7 @@ img {
 .neon-title {
   color: #dc56c5;
   color: #f1dcee;
-  text-shadow: 0 0 7px #dc56c6b7, 0 0 10px #dc56c5, 0 0 21px #dc56c5, 0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
+  text-shadow: 0 0 7px #dc56c6b7, 0 0 10px #dc56c5, 0 0 21px #dc56c5, 0 0 42px #dc5699, 0 0 82px #dc5699, 0 0 92px #dc1099, 0 0 110px #dc1099;
 }
 
 .header {
@@ -1186,7 +1186,7 @@ img {
   -webkit-transition: height 0.3s ease;
   transition: height 0.3s ease;
   width: 270px;
-  height: 170px;
+  height: 260px;
   margin-top: 25px;
   background: rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(20px);
@@ -1651,7 +1651,8 @@ img {
 
 .modal .wrapper {
   width: 272px;
-  height: 100vh;
+  max-height: 800px;
+  min-height: 750px;
   border-radius: 150px 0px 150px 0px;
   background-color: #fff2fd;
 }
@@ -1659,7 +1660,6 @@ img {
 @media screen and (min-width: 768px) {
   .modal .wrapper {
     width: 595px;
-    height: 100vh;
     border-radius: 300px 0px;
     padding-top: 30px;
   }
@@ -1668,7 +1668,6 @@ img {
 @media screen and (min-width: 1280px) {
   .modal .wrapper {
     width: 930px;
-    height: 100vh;
     padding-top: 0;
   }
 }

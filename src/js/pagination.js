@@ -12,10 +12,8 @@ import {
   qla,
   eventSearch,
   DEFAULT_API_RESPONSE,
-  country,
-  dropDown,
-  navButton,
 } from "./globalVAR.js"
+import { createCountrySerch, createKeywordSerch } from "./searchEvents.js"
 
 let page = 0
 let totalPages = 0
@@ -26,44 +24,8 @@ let idVen = ""
 const setPage = (pageNumber) => (page = pageNumber)
 const setTotalPages = (allPages) => (totalPages = allPages - 1)
 const setKeyword = (formValue) => (keyword = formValue)
-const getKeyByValue = (object, value) =>
-  Object.keys(object).find((key) => object[key] === value)
-const closeChooseCountry = () =>
-  navButton.parentNode.parentNode.classList.toggle("closed")
-// form
-navButton.addEventListener("click", closeChooseCountry, false)
-
-eventSearch.addEventListener("keyup", () => {
-  setKeyword(eventSearch.value)
-  idVen = ""
-  l(`keyword: ${keyword}`)
-  changePage(0)
-})
-
-Object.values(country).forEach((curentCountry) => {
-  const lastItem = document.createElement("li")
-  const link = document.createElement("a")
-  link.href = "#start"
-
-  if (curentCountry != "") {
-    link.innerText = curentCountry
-    lastItem.append(link)
-    dropDown.append(lastItem)
-    lastItem.addEventListener(
-      "click",
-      () => {
-        countryCode =
-          getKeyByValue(country, curentCountry) ?? country["default"]
-        l(`Country ${curentCountry} ${countryCode}`)
-        navButton.innerText = curentCountry
-        closeChooseCountry()
-        changePage(0)
-      },
-      false
-    )
-  }
-})
-// form end
+const setCountryCode = (code) => (countryCode = code)
+const setIdVen = (ven) => (idVen = ven)
 
 async function apiCall() {
   return fetch(
@@ -82,8 +44,6 @@ async function apiCall() {
 function processedApiDate(apiCall) {
   return apiCall()
     .then((apiResults) => {
-      // l("apiResults")
-      // l(apiResults)
       if (!("_embedded" in apiResults)) {
         l("no _embedded in apiResults")
         setTotalPages(1)
@@ -166,13 +126,15 @@ const setLastPageInPages = (totalPages) => {
   return lastPage // no more then 29 pages
 }
 
-const changePage = (pageNumber) => {
+export const changePage = (
+  pageNumber,
+  processedEvent = processedApiDate(apiCall)
+) => {
   setPage(pageNumber)
-  renderGallery(processedApiDate(apiCall)).then(() => {
-    // l(`totalPages changePage ${totalPages}`)
-    // l(`pageNumber changePage ${pageNumber}`)
+
+  renderGallery(processedEvent).then(() => {
     let lastPage = setLastPageInPages(totalPages)
-    // l(`lastPage: ${lastPage}`)
+
     dotsEnd.style.display = "flex" // show end dots
 
     if (lastPage > 6) {
@@ -211,9 +173,9 @@ const changePage = (pageNumber) => {
     // reload site
     pages.classList.add("pages--is-hidden")
     focusOnCurentPage(pageNumber)
-    const modal = renderModal(processedApiDate(apiCall))
-    l("modal" + modal)
-    authorEvents(modal)
+    const modals = renderModal(processedEvent)
+    l("modal" + modals)
+    authorEvents(modals)
   })
 }
 
@@ -242,15 +204,20 @@ function authorEvents(modal) {
   })
 }
 
-renderGallery(processedApiDate(apiCall))
-const modals = renderModal(processedApiDate(apiCall))
-authorEvents(modals)
-pageClick()
-focusOnCurentPage(1)
+const createHomePage = (processedEvent = processedApiDate(apiCall)) => {
+  renderGallery(processedEvent)
+  const modalEvents = renderModal(processedEvent)
+  authorEvents(modalEvents)
+  pageClick()
+  focusOnCurentPage(1)
+}
 
-// more from author
+// FORM
+createKeywordSerch(setKeyword, setIdVen)
+createCountrySerch(setCountryCode)
+// FORM END
 
-//modalShows(processedApiDate(apiCall))
+createHomePage()
 
 ////////////////////////////////////////////////////////////////////////////
 // console.log(`apiResults:`)
